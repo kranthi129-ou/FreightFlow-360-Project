@@ -8,7 +8,7 @@ import { DashboardSummary } from '../models/dashboard-summary.model';
   providedIn: 'root'
 })
 export class DashboardService {
-  private readonly apiUrl = 'http://localhost:8081/api/dashboard';
+  private readonly apiUrl = 'http://localhost:8082/api/dashboard';
 
   constructor(private http: HttpClient) {}
 

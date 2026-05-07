@@ -114,7 +114,7 @@ export class ProductForm implements OnInit {
         )
         .subscribe({
           next: () => {
-            this.router.navigate(['/products']);
+            this.router.navigate(['/app/products']);
           },
           error: (error) => {
             console.error('Update product error:', error);
@@ -136,7 +136,7 @@ export class ProductForm implements OnInit {
       )
       .subscribe({
         next: () => {
-          this.router.navigate(['/products']);
+          this.router.navigate(['/app/products']);
         },
         error: (error) => {
           console.error('Create product error:', error);

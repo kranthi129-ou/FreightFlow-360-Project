@@ -1,0 +1,98 @@
+<div class="portal-page">
+  <app-public-navbar></app-public-navbar>
+
+  <main class="hero-section">
+
+
+    <section class="hero-content">
+      <p class="eyebrow">Freight operations made clearer</p>
+
+      <h1>Welcome to</h1>
+
+      <div class="brand-animation" aria-label="FF360 expands to Freight Flow 360">
+        <span class="word word-freight">
+          <span class="initial">F</span>
+          <span class="reveal">reight</span>
+        </span>
+
+        <span class="word word-flow">
+          <span class="initial">F</span>
+          <span class="reveal">low</span>
+        </span>
+
+        <span class="numbers">360</span>
+      </div>
+
+      <p class="hero-subtitle">
+        Sign in to one of the Freight Flow 360 platforms below.
+      </p>
+    </section>
+
+    <section class="portal-card-grid" aria-label="FreightFlow360 portal options">
+      <article class="portal-card">
+        <h2>Admin Portal</h2>
+        <p>
+          Manage products, inventory, orders, dashboard insights, and platform operations.
+        </p>
+        <a routerLink="/admin-login" class="portal-button">
+          <span>Admin Portal</span>
+        </a>
+      </article>
+
+      <article class="portal-card placeholder-card" (click)="showComingSoon('Customer')">
+        <h2 class="portal-title">Customer Portal</h2>
+
+        <p class="portal-desc">
+          Track shipments, review order history, and manage freight requests.
+        </p>
+
+        <button type="button" class="portal-button">
+          <span>Customer Portal</span>
+        </button>
+
+        <div class="construction-preview">
+          <img [src]="constructionGifUrl" alt="Under construction animation" />
+          <p>Under Construction</p>
+        </div>
+      </article>
+
+      <article class="portal-card placeholder-card" (click)="showComingSoon('Driver')">
+        <h2 class="portal-title">Driver Portal</h2>
+
+        <p class="portal-desc">
+          View delivery assignments, route details, and shipment status updates.
+        </p>
+
+        <button type="button" class="portal-button">
+          <span>Driver Portal</span>
+        </button>
+
+        <div class="construction-preview">
+          <img [src]="constructionGifUrl" alt="Under construction animation" />
+          <p>Under Construction</p>
+        </div>
+      </article>
+
+      <article class="portal-card placeholder-card" (click)="showComingSoon('Employee')">
+        <h2 class="portal-title">Employee Portal</h2>
+
+        <p class="portal-desc">
+          Access warehouse tools, internal tasks, and daily operational workflows.
+        </p>
+
+        <button type="button" class="portal-button">
+          <span>Employee Portal</span>
+        </button>
+
+        <div class="construction-preview">
+          <img [src]="constructionGifUrl" alt="Under construction animation" />
+          <p>Under Construction</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <div class="coming-soon-toast" *ngIf="comingSoonMessage">
+    {{ comingSoonMessage }}
+  </div>
+</div>

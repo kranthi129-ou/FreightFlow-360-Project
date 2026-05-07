@@ -61,7 +61,7 @@ export class Dashboard implements OnInit {
           console.error('Dashboard load error:', error);
 
           this.zone.run(() => {
-            this.errorMessage = 'Unable to load dashboard data. Check that the backend is running on port 8081 and /api/dashboard/summary is working.';
+            this.errorMessage = 'Unable to load dashboard data. Check that the backend is running on port 8082 and /api/dashboard/summary is working.';
             this.forceRefresh();
           });
         }

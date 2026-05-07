@@ -46,7 +46,7 @@ export class Orders implements OnInit {
         },
         error: (error) => {
           console.error('Load orders error:', error);
-          this.errorMessage = 'Unable to load orders. Check that the backend is running on port 8081 and /api/orders is working.';
+          this.errorMessage = 'Unable to load orders. Check that the backend is running on port 8082 and /api/orders is working.';
           this.cdr.detectChanges();
         }
       });

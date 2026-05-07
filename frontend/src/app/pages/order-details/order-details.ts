@@ -74,7 +74,7 @@ export class OrderDetails implements OnInit {
         },
         error: (error) => {
           console.error('Load order details error:', error);
-          this.errorMessage = 'Unable to load order details. Check that the backend is running on port 8081 and the order exists.';
+          this.errorMessage = 'Unable to load order details. Check that the backend is running on port 8082 and the order exists.';
           this.cdr.detectChanges();
         }
       });

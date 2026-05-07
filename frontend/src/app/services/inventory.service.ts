@@ -8,8 +8,8 @@ import { Product } from '../models/product.model';
   providedIn: 'root'
 })
 export class InventoryService {
-  private readonly apiUrl = 'http://localhost:8081/api/inventory';
-  private readonly productApiUrl = 'http://localhost:8081/api/products';
+  private readonly apiUrl = 'http://localhost:8082/api/inventory';
+  private readonly productApiUrl = 'http://localhost:8082/api/products';
 
   constructor(private http: HttpClient) {}
 

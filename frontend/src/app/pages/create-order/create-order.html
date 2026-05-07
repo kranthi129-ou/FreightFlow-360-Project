@@ -5,7 +5,7 @@
       <p>Create a customer order with one or more warehouse products.</p>
     </div>
 
-    <a routerLink="/orders" class="secondary-link">Back to Orders</a>
+    <a routerLink="/app/orders" class="secondary-link">Back to Orders</a>
   </div>
 
   <div *ngIf="loadingProducts" class="message-card">
@@ -126,7 +126,7 @@
         {{ saving ? 'Creating...' : 'Submit Order' }}
       </button>
 
-      <a routerLink="/orders" class="cancel-link">Cancel</a>
+      <a routerLink="/app/orders" class="cancel-link">Cancel</a>
     </div>
   </div>
 </div>

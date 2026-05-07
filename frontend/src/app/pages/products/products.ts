@@ -48,7 +48,7 @@ export class Products implements OnInit {
         },
         error: (error) => {
           console.error('Load products error:', error);
-          this.errorMessage = 'Unable to load products. Check that the backend is running on port 8081 and /api/products is working.';
+          this.errorMessage = 'Unable to load products. Check that the backend is running on port 8082 and /api/products is working.';
           this.cdr.detectChanges();
         }
       });

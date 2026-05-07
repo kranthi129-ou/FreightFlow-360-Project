@@ -1,0 +1,326 @@
+.portal-page {
+  min-height: 100vh;
+  color: #082b45;
+  overflow-x: hidden;
+  background-color: #f8fafc;
+  background-image:
+    linear-gradient(rgba(248, 250, 252, 0.82), rgba(248, 250, 252, 0.82)),
+    url("data:image/svg+xml,%3Csvg width='720' height='440' viewBox='0 0 720 440' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.9' stroke='%23CBD6DF' stroke-width='1.35'%3E%3Cpath d='M-40 58C34 20 93 22 152 70C211 118 266 120 331 80C395 40 455 26 526 68C597 110 653 116 760 70'/%3E%3Cpath d='M-38 112C42 70 104 72 170 125C236 178 294 179 366 132C438 86 505 75 581 121C658 168 704 171 764 136'/%3E%3Cpath d='M-38 170C48 124 118 126 190 184C263 242 327 241 406 190C485 139 560 132 642 184C724 236 764 234 794 210'/%3E%3Cpath d='M-38 232C52 178 131 184 214 248C297 312 366 307 454 252C542 197 621 196 706 254C791 312 824 306 850 284'/%3E%3Cpath d='M-42 302C55 240 148 250 240 320C332 390 410 381 508 320C606 259 690 265 778 330C866 395 894 383 918 360'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 620px 380px;
+  background-position: top center;
+}
+
+.hero-section {
+  padding: 48px 24px 70px;
+  background: transparent;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero-title-stack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #c8102e;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.hero-content h1 {
+  margin: 0;
+  color: #082b45;
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.brand-animation {
+  margin: 12px auto 12px;
+  min-height: 72px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #003a5d;
+  font-size: clamp(42px, 6vw, 78px);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+}
+
+.word {
+  display: inline-flex;
+  overflow: hidden;
+  align-items: baseline;
+}
+
+.initial {
+  display: inline-block;
+}
+
+.reveal {
+  display: inline-block;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  animation: revealWord 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.word-freight .reveal {
+  animation-delay: 0.65s;
+}
+
+.word-flow .reveal {
+  animation-delay: 1.05s;
+}
+
+.numbers {
+  display: inline-block;
+  animation: slideNumbers 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+}
+
+.hero-subtitle {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #52677a;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.portal-grid-section {
+  margin-top: 36px;
+}
+.portal-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 360px);
+  justify-content: center;
+  gap: 22px 24px;
+}
+
+.portal-card {
+  width: 360px;
+  min-height: 230px;
+  padding: 32px 30px;
+  background: #ffffff;
+  border: 1px solid #e6edf3;
+  border-radius: 25px;
+  box-shadow: 0 14px 34px rgba(8, 43, 69, 0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease;
+}
+
+.portal-card:hover {
+  transform: translateY(-5px);
+  border-color: #d4dfe8;
+  box-shadow: 0 22px 46px rgba(8, 43, 69, 0.12);
+}
+
+.portal-card h2 {
+  margin: 0 0 16px;
+  color: #123f67;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.portal-card p {
+  max-width: 290px;
+  margin: 0 0 26px;
+  color: #35597a;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.portal-button,
+.portal-button:visited {
+  width: fit-content;
+  min-width: 142px;
+  height: 46px;
+  padding: 0 24px;
+  border: 0;
+  background: #0b3554;
+  color: #22c584;
+  text-decoration: none;
+  font-family: 'Roboto Condensed', Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  text-transform: none;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: skew(-12deg);
+  box-sizing: border-box;
+}
+
+.portal-button span {
+  display: block;
+  transform: skew(12deg);
+  color: 22c584;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.portal-button:hover {
+  box-shadow: 0 10px 18px rgba(34, 197, 132, 0.24);
+}
+
+.primary-button {
+  background: #5fa943;
+  color: #003a5d;
+}
+.coming-soon-toast {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 50;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: #082b45;
+  color: #ffffff;
+  box-shadow: 0 18px 40px rgba(8, 43, 69, 0.22);
+  font-weight: 700;
+}
+
+@keyframes revealWord {
+  0% {
+    max-width: 0;
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+
+  100% {
+    max-width: 220px;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideNumbers {
+  0% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    transform: translateX(14px);
+  }
+}
+
+@media (max-width: 900px) {
+  .portal-grid-section {
+    max-width: 420px;
+  }
+
+  .portal-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portal-card {
+    width: 100%;
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-section {
+    padding: 42px 18px 56px;
+  }
+
+  .brand-animation {
+    gap: 6px;
+  }
+
+  .portal-grid-section {
+    margin-top: 36px;
+  }
+
+  .portal-card {
+    padding: 28px 22px;
+  }
+}
+
+.portal-title,
+.portal-desc {
+  transition:
+    transform 0.35s ease,
+    opacity 0.3s ease;
+}
+
+.placeholder-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.placeholder-card .construction-preview {
+  position: absolute;
+  left: 50%;
+  top: 108px;
+  transform: translateX(-50%);
+  width: 78%;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0.35s ease;
+  text-align: center;
+}
+
+.placeholder-card .construction-preview img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 18px;
+  display: block;
+  box-shadow: 0 10px 18px rgba(0, 58, 93, 0.16);
+}
+
+.placeholder-card .construction-preview p {
+  margin: 10px 0 0;
+  color: #0b3554;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.placeholder-card:hover .portal-title {
+  transform: translateY(-18px);
+}
+
+.placeholder-card:hover .portal-desc {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+.placeholder-card:hover .portal-button {
+  opacity: 0;
+  transform: skew(-12deg) translateY(10px);
+  pointer-events: none;
+}
+
+.placeholder-card:hover .construction-preview {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-8px);
+}

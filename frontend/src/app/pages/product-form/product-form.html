@@ -5,7 +5,7 @@
       <p>{{ isEditMode ? 'Update existing product details.' : 'Create a new warehouse product.' }}</p>
     </div>
 
-    <a routerLink="/products" class="secondary-link">Back to Products</a>
+    <a routerLink="/app/products" class="secondary-link">Back to Products</a>
   </div>
 
   <div *ngIf="loading" class="message-card">
@@ -79,7 +79,7 @@
         {{ saving ? 'Saving...' : isEditMode ? 'Update Product' : 'Create Product' }}
       </button>
 
-      <a routerLink="/products" class="cancel-link">Cancel</a>
+      <a routerLink="/app/products" class="cancel-link">Cancel</a>
     </div>
   </form>
 </div>

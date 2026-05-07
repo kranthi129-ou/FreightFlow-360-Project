@@ -1,0 +1,38 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <h1>FreightFlow360</h1>
+    <p class="subtitle">Create First Admin Account</p>
+
+    <form (ngSubmit)="createAdmin()">
+      <label>Full Name</label>
+      <input
+        type="text"
+        name="fullName"
+        [(ngModel)]="fullName"
+        placeholder="Admin User"
+      />
+
+      <label>Email</label>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="admin@freightflow360.com"
+      />
+
+      <label>Password</label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        placeholder="Minimum 8 characters"
+      />
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Creating...' : 'Create Admin' }}
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <h1>FreightFlow360</h1>
+    <p class="subtitle">Admin Sign In</p>
+
+    <form (ngSubmit)="login()">
+      <label>Email</label>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="admin@freightflow360.com"
+      />
+
+      <label>Password</label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        placeholder="Enter password"
+      />
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Signing in...' : 'Sign In' }}
+      </button>
+    </form>
+  </div>
+</div>
