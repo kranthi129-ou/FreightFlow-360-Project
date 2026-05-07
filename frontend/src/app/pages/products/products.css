@@ -1,0 +1,178 @@
+.products-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #111827;
+}
+
+.page-header p {
+  margin: 8px 0 0;
+  color: #6b7280;
+}
+
+.primary-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.primary-button:hover {
+  background-color: #1d4ed8;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.toolbar input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.toolbar button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toolbar .secondary-button {
+  background-color: #6b7280;
+}
+
+.table-card,
+.message-card,
+.error-card {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.error-card {
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-placeholder {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background-color: #e5e7eb;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+  background-color: #f9fafb;
+  color: #374151;
+  font-size: 14px;
+}
+
+td {
+  color: #111827;
+}
+
+.stock-badge {
+  display: inline-block;
+  background-color: #ecfdf5;
+  color: #047857;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.stock-badge.low-stock {
+  background-color: #fef2f2;
+  color: #b91c1c;
+}
+
+.actions-column {
+  width: 150px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.edit-link {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.delete-button {
+  border: none;
+  background: none;
+  color: #dc2626;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.empty-state {
+  color: #6b7280;
+  padding: 16px;
+  background-color: #f9fafb;
+  border-radius: 6px;
+}
+
+@media (max-width: 800px) {
+  .page-header,
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .table-card {
+    overflow-x: auto;
+  }
+}

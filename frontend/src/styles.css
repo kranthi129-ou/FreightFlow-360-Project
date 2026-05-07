@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f6f8;
+  color: #111827;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+button:disabled {
+  opacity: 0.7;
+}
+
+a {
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+table {
+  font-size: 14px;
+}
+
+input,
+select,
+textarea {
+  background-color: white;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: #dc2626;
+}
+
+.page-header {
+  word-break: break-word;
+}

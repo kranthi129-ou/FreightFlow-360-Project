@@ -1,0 +1,151 @@
+.low-stock-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #111827;
+}
+
+.page-header p {
+  margin: 8px 0 0;
+  color: #6b7280;
+}
+
+.secondary-link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.secondary-link:hover {
+  text-decoration: underline;
+}
+
+.table-card,
+.message-card,
+.error-card,
+.success-card {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.error-card {
+  margin-bottom: 16px;
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+.success-card {
+  margin-bottom: 16px;
+  color: #047857;
+  background-color: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+  background-color: #f9fafb;
+  color: #374151;
+  font-size: 14px;
+}
+
+td {
+  color: #111827;
+}
+
+.product-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-placeholder {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background-color: #e5e7eb;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.quantity-warning {
+  display: inline-block;
+  background-color: #fef2f2;
+  color: #b91c1c;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.adjust-stock {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.adjust-stock input {
+  width: 80px;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.adjust-stock button {
+  border: none;
+  background-color: #2563eb;
+  color: white;
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.adjust-stock button:hover {
+  background-color: #1d4ed8;
+}
+
+.empty-state {
+  color: #6b7280;
+  padding: 16px;
+  background-color: #f9fafb;
+  border-radius: 6px;
+}
+
+@media (max-width: 800px) {
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .table-card {
+    overflow-x: auto;
+  }
+}

@@ -1,0 +1,114 @@
+<div class="order-details-page">
+  <div class="page-header">
+    <div>
+      <h1>Order Details</h1>
+      <p>View full order information and update order status.</p>
+    </div>
+
+    <a routerLink="/orders" class="secondary-link">Back to Orders</a>
+  </div>
+
+  <div *ngIf="loading" class="message-card">
+    Loading order details...
+  </div>
+
+  <div *ngIf="errorMessage" class="error-card">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="success-card">
+    {{ successMessage }}
+  </div>
+
+  <ng-container *ngIf="order && !loading">
+    <section class="details-card">
+      <div class="details-header">
+        <div>
+          <h2>Order #{{ order.id }}</h2>
+          <p>Created {{ order.createdAt | date: 'medium' }}</p>
+        </div>
+
+        <span class="status-badge" [class]="getStatusClass(order.status)">
+          {{ order.status }}
+        </span>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-item">
+          <span>Customer Name</span>
+          <strong>{{ order.customerName }}</strong>
+        </div>
+
+        <div class="detail-item">
+          <span>Customer Email</span>
+          <strong>{{ order.customerEmail || 'Not provided' }}</strong>
+        </div>
+
+        <div class="detail-item">
+          <span>Total Amount</span>
+          <strong>{{ order.totalAmount | currency }}</strong>
+        </div>
+
+        <div class="detail-item">
+          <span>Last Updated</span>
+          <strong>{{ order.updatedAt ? (order.updatedAt | date: 'medium') : 'Not available' }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="status-card">
+      <h2>Update Status</h2>
+
+      <div class="status-row">
+        <select [(ngModel)]="selectedStatus">
+          <option *ngFor="let status of allowedStatuses" [value]="status">
+            {{ status }}
+          </option>
+        </select>
+
+        <button
+          type="button"
+          class="primary-button"
+          [disabled]="updatingStatus || selectedStatus === order.status"
+          (click)="updateStatus()"
+        >
+          {{ updatingStatus ? 'Updating...' : 'Update Status' }}
+        </button>
+      </div>
+    </section>
+
+    <section class="table-card">
+      <div class="section-header">
+        <h2>Ordered Items</h2>
+      </div>
+
+      <table *ngIf="order.items.length > 0; else noItems">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Product ID</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of order.items">
+            <td>{{ item.productName }}</td>
+            <td>{{ item.productId }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unitPrice | currency }}</td>
+            <td>{{ item.subtotal | currency }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #noItems>
+        <div class="empty-state">
+          No items found for this order.
+        </div>
+      </ng-template>
+    </section>
+  </ng-container>
+</div>

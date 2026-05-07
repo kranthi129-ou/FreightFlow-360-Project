@@ -1,0 +1,58 @@
+<div class="orders-page">
+  <div class="page-header">
+    <div>
+      <h1>Orders</h1>
+      <p>View customer orders and open full order details.</p>
+    </div>
+
+    <a routerLink="/orders/create" class="primary-button">Create Order</a>
+  </div>
+
+  <div *ngIf="loading" class="message-card">
+    Loading orders...
+  </div>
+
+  <div *ngIf="errorMessage" class="error-card">
+    {{ errorMessage }}
+  </div>
+
+  <div class="table-card" *ngIf="!loading && !errorMessage">
+    <table *ngIf="orders.length > 0; else noOrders">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Status</th>
+          <th>Total Amount</th>
+          <th>Created Date</th>
+          <th class="actions-column">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>#{{ order.id }}</td>
+          <td>{{ order.customerName }}</td>
+          <td>
+            <span class="status-badge" [class]="getStatusClass(order.status)">
+              {{ order.status }}
+            </span>
+          </td>
+          <td>{{ order.totalAmount | currency }}</td>
+          <td>{{ order.createdAt | date: 'mediumDate' }}</td>
+          <td>
+            <a [routerLink]="['/orders', order.id]" class="details-link">
+              View Details
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noOrders>
+      <div class="empty-state">
+        No orders found.
+      </div>
+    </ng-template>
+  </div>
+</div>

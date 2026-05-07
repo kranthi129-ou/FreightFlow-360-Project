@@ -1,0 +1,82 @@
+<div class="low-stock-page">
+  <div class="page-header">
+    <div>
+      <h1>Low Stock</h1>
+      <p>Products where quantity is at or below the reorder level.</p>
+    </div>
+
+    <a routerLink="/products" class="secondary-link">Back to Products</a>
+  </div>
+
+  <div *ngIf="loading" class="message-card">
+    Loading low-stock products...
+  </div>
+
+
+
+  <div *ngIf="errorMessage" class="error-card">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="success-card">
+    {{ successMessage }}
+  </div>
+
+  <div class="table-card" *ngIf="!loading">
+    <table *ngIf="lowStockProducts.length > 0; else noLowStockProducts">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>SKU</th>
+          <th>Category</th>
+          <th>Current Quantity</th>
+          <th>Reorder Level</th>
+          <th>Unit Price</th>
+          <th>Adjust Stock</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let product of lowStockProducts">
+          <td>
+            <div class="product-name-cell">
+              <span class="product-placeholder">
+                {{ product.name ? product.name.charAt(0).toUpperCase() : '?' }}
+              </span>
+
+              <span>{{ product.name }}</span>
+            </div>
+          </td>
+
+          <td>{{ product.sku }}</td>
+          <td>{{ product.category }}</td>
+          <td>
+            <span class="quantity-warning">{{ product.quantity }}</span>
+          </td>
+          <td>{{ product.reorderLevel }}</td>
+          <td>{{ product.unitPrice | currency }}</td>
+          <td>
+            <div class="adjust-stock">
+              <input
+                type="number"
+                min="1"
+                placeholder="Qty"
+                [(ngModel)]="adjustmentQuantities[product.id!]"
+              />
+
+              <button type="button" (click)="adjustStock(product)">
+                Adjust
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noLowStockProducts>
+      <div class="empty-state">
+        No low-stock products found.
+      </div>
+    </ng-template>
+  </div>
+</div>
