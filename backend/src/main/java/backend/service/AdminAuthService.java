@@ -6,6 +6,7 @@ import backend.dto.AdminSetupRequest;
 import backend.dto.AuthResponse;
 import backend.model.Admin;
 import backend.repository.AdminRepository;
+import jakarta.annotation.PostConstruct;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,13 @@ import java.time.LocalDateTime;
 
 @Service
 public class AdminAuthService {
+
+    private static final String ADMIN_ROLE = "ADMIN";
+    private static final String VIEWER_ROLE = "VIEWER";
+
+    private static final String VISITOR_FULL_NAME = "Visitor Admin";
+    private static final String VISITOR_EMAIL = "visitor@freightflow360.com";
+    private static final String VISITOR_PASSWORD = "Visiter@123";
 
     private final AdminRepository adminRepository;
     private final PasswordEncoder passwordEncoder;
@@ -28,6 +36,15 @@ public class AdminAuthService {
         this.adminRepository = adminRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
+    }
+
+    @PostConstruct
+    public void createVisitorAccountIfAdminExists() {
+        if (adminRepository.count() == 0) {
+            return;
+        }
+
+        createVisitorAccountIfMissing();
     }
 
     public boolean isSetupRequired() {
@@ -48,11 +65,14 @@ public class AdminAuthService {
                 request.getFullName().trim(),
                 email,
                 passwordEncoder.encode(request.getPassword()),
-                "ADMIN",
+                ADMIN_ROLE,
                 true
         );
 
         Admin savedAdmin = adminRepository.save(admin);
+
+        createVisitorAccountIfMissing();
+
         String token = jwtService.generateToken(savedAdmin);
 
         return new AuthResponse(
@@ -102,6 +122,24 @@ public class AdminAuthService {
                 admin.getEmail(),
                 admin.getFullName()
         );
+    }
+
+    private void createVisitorAccountIfMissing() {
+        String visitorEmail = normalizeEmail(VISITOR_EMAIL);
+
+        if (adminRepository.findByEmail(visitorEmail).isPresent()) {
+            return;
+        }
+
+        Admin visitor = new Admin(
+                VISITOR_FULL_NAME,
+                visitorEmail,
+                passwordEncoder.encode(VISITOR_PASSWORD),
+                VIEWER_ROLE,
+                true
+        );
+
+        adminRepository.save(visitor);
     }
 
     private String normalizeEmail(String email) {
