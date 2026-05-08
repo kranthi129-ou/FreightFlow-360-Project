@@ -5,7 +5,7 @@
       <p>View, search, add, edit, and delete warehouse products.</p>
     </div>
 
-    <a routerLink="/products/new" class="primary-button">Add Product</a>
+    <a routerLink="/app/products/new" class="primary-button">Add Product</a>
   </div>
 
   <div class="toolbar">
@@ -45,27 +45,22 @@
 
       <tbody>
         <tr *ngFor="let product of products">
-          
-            
-        <td>
-        <!-- Phase 8 polish reminder: replace this placeholder avatar with a real product image or stock image lookup if needed. -->
+          <td>
             <div class="product-name-cell">
-                <div class="product-placeholder">
+              <div class="product-placeholder">
                 {{ product.name.charAt(0).toUpperCase() }}
-                </div>
+              </div>
 
-                <span>{{ product.name }}</span>
+              <span>{{ product.name }}</span>
             </div>
-        </td>
-
-
-
+          </td>
 
           <td>{{ product.sku }}</td>
           <td>{{ product.category }}</td>
           <td>{{ product.quantity }}</td>
           <td>{{ product.unitPrice | currency }}</td>
           <td>{{ product.reorderLevel }}</td>
+
           <td>
             <span
               class="stock-badge"
@@ -74,8 +69,12 @@
               {{ isLowStock(product) ? 'Low Stock' : 'In Stock' }}
             </span>
           </td>
+
           <td class="actions">
-            <a [routerLink]="['/products/edit', product.id]" class="edit-link">Edit</a>
+            <a [routerLink]="['/app/products/edit', product.id]" class="edit-link">
+              Edit
+            </a>
+
             <button type="button" class="delete-button" (click)="deleteProduct(product)">
               Delete
             </button>

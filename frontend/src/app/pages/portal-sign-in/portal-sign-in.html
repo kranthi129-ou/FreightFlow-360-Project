@@ -2,8 +2,6 @@
   <app-public-navbar></app-public-navbar>
 
   <main class="hero-section">
-
-
     <section class="hero-content">
       <p class="eyebrow">Freight operations made clearer</p>
 
@@ -28,18 +26,32 @@
       </p>
     </section>
 
-    <section class="portal-card-grid" aria-label="FreightFlow360 portal options">
-      <article class="portal-card">
+    <section class="portal-card-grid" aria-label="Freight Flow 360 portal options">
+      <article #revealCard class="portal-card admin-card">
         <h2>Admin Portal</h2>
+
         <p>
           Manage products, inventory, orders, dashboard insights, and platform operations.
         </p>
-        <a routerLink="/admin-login" class="portal-button">
-          <span>Admin Portal</span>
-        </a>
+
+        <div class="admin-truck-wrap">
+          <img
+            class="admin-truck-img"
+            src="assets/images/truck1.png"
+            alt="Freight truck"
+          />
+
+          <a routerLink="/admin-login" class="portal-button admin-truck-button">
+            <span>Admin Portal</span>
+          </a>
+        </div>
       </article>
 
-      <article class="portal-card placeholder-card" (click)="showComingSoon('Customer')">
+      <article
+        #revealCard
+        class="portal-card placeholder-card"
+        (click)="showComingSoon('Customer')"
+      >
         <h2 class="portal-title">Customer Portal</h2>
 
         <p class="portal-desc">
@@ -56,7 +68,11 @@
         </div>
       </article>
 
-      <article class="portal-card placeholder-card" (click)="showComingSoon('Driver')">
+      <article
+        #revealCard
+        class="portal-card placeholder-card"
+        (click)="showComingSoon('Driver')"
+      >
         <h2 class="portal-title">Driver Portal</h2>
 
         <p class="portal-desc">
@@ -73,7 +89,11 @@
         </div>
       </article>
 
-      <article class="portal-card placeholder-card" (click)="showComingSoon('Employee')">
+      <article
+        #revealCard
+        class="portal-card placeholder-card"
+        (click)="showComingSoon('Employee')"
+      >
         <h2 class="portal-title">Employee Portal</h2>
 
         <p class="portal-desc">
@@ -91,6 +111,12 @@
       </article>
     </section>
   </main>
+
+  <footer class="portal-footer">
+    <span>Freight Flow 360</span>
+    <span class="footer-divider">•</span>
+    <span>Moving freight forward with clarity and confidence.</span>
+  </footer>
 
   <div class="coming-soon-toast" *ngIf="comingSoonMessage">
     {{ comingSoonMessage }}

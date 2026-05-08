@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { finalize, timeout } from 'rxjs';
 
 import { Order } from '../../models/order.model';
@@ -16,9 +16,11 @@ export class Orders implements OnInit {
   orders: Order[] = [];
   loading = false;
   errorMessage = '';
+  showVisitorPopup = false;
 
   constructor(
     private orderService: OrderService,
+    private router: Router,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -50,6 +52,67 @@ export class Orders implements OnInit {
           this.cdr.detectChanges();
         }
       });
+  }
+
+  handleCreateOrder(): void {
+    if (this.isVisitorAccount()) {
+      this.showVisitorPopup = true;
+      return;
+    }
+
+    this.router.navigate(['/app/orders/create']);
+  }
+
+  closeVisitorPopup(): void {
+    this.showVisitorPopup = false;
+  }
+
+  private isVisitorAccount(): boolean {
+    const role =
+      localStorage.getItem('role') ||
+      localStorage.getItem('adminRole') ||
+      localStorage.getItem('userRole');
+
+    const email =
+      localStorage.getItem('email') ||
+      localStorage.getItem('adminEmail') ||
+      localStorage.getItem('userEmail');
+
+    if (role && role.toUpperCase() === 'VIEWER') {
+      return true;
+    }
+
+    if (email && email.toLowerCase() === 'visitor@freightflow360.com') {
+      return true;
+    }
+
+    const possibleKeys = ['auth', 'adminAuth', 'currentUser', 'user'];
+
+    for (const key of possibleKeys) {
+      const value = localStorage.getItem(key);
+
+      if (!value) {
+        continue;
+      }
+
+      try {
+        const parsed = JSON.parse(value);
+        const savedRole = parsed?.role || parsed?.user?.role || parsed?.admin?.role;
+        const savedEmail = parsed?.email || parsed?.user?.email || parsed?.admin?.email;
+
+        if (savedRole && savedRole.toUpperCase() === 'VIEWER') {
+          return true;
+        }
+
+        if (savedEmail && savedEmail.toLowerCase() === 'visitor@freightflow360.com') {
+          return true;
+        }
+      } catch {
+        continue;
+      }
+    }
+
+    return false;
   }
 
   getStatusClass(status: string): string {

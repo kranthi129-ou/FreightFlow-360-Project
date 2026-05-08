@@ -1,30 +1,55 @@
 <div class="auth-page">
-  <div class="auth-card">
-    <h1>FreightFlow360</h1>
-    <p class="subtitle">Admin Sign In</p>
+  <app-public-navbar></app-public-navbar>
 
-    <form (ngSubmit)="login()">
-      <label>Email</label>
-      <input
-        type="email"
-        name="email"
-        [(ngModel)]="email"
-        placeholder="admin@freightflow360.com"
-      />
+  <main class="auth-main">
+    <section class="login-shell">
+      <div class="logo-plate">
+        <h1 class="auth-brand">FreightFlow360</h1>
+      </div>
 
-      <label>Password</label>
-      <input
-        type="password"
-        name="password"
-        [(ngModel)]="password"
-        placeholder="Enter password"
-      />
+      <div class="auth-card">
+        <div class="card-heading">
+          <p class="eyebrow">Secure Admin Access</p>
+          <h2>Admin Portal</h2>
+        </div>
 
-      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+        <form class="login-form" (ngSubmit)="login()">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            placeholder="admin@freightflow360.com"
+          />
 
-      <button type="submit" [disabled]="loading">
-        {{ loading ? 'Signing in...' : 'Sign In' }}
-      </button>
-    </form>
-  </div>
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            placeholder="Enter password"
+          />
+
+          <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+          <button type="submit" class="signin-button" [disabled]="loading">
+            {{ loading ? 'Signing in...' : 'Sign In' }}
+          </button>
+
+          <p class="create-account-text">
+            Don’t have an account?
+            <a routerLink="/admin-setup">Create Account</a>
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="portal-footer">
+    <span>Freight Flow 360</span>
+    <span class="footer-divider">•</span>
+    <span>Moving freight forward with clarity and confidence.</span>
+  </footer>
 </div>

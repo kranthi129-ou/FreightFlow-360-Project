@@ -1,20 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-
+import { Router, RouterLink } from '@angular/router';
+import { PublicNavbar } from '../../shared/public-navbar/public-navbar';
 import { AdminAuthService } from '../../services/admin-auth.service';
 
 @Component({
   selector: 'app-admin-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    PublicNavbar
+  ],
   templateUrl: './admin-login.html',
   styleUrl: './admin-login.css'
 })
 export class AdminLogin implements OnInit {
-  email = '';
-  password = '';
+  email = 'visitor@freightflow360.com';
+  password = 'Visiter@123';
   errorMessage = '';
   loading = false;
 

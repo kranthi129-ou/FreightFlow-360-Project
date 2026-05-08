@@ -5,7 +5,9 @@
       <p>View customer orders and open full order details.</p>
     </div>
 
-    <a routerLink="/orders/create" class="primary-button">Create Order</a>
+    <button type="button" class="primary-button" (click)="handleCreateOrder()">
+      Create Order
+    </button>
   </div>
 
   <div *ngIf="loading" class="message-card">
@@ -41,7 +43,7 @@
           <td>{{ order.totalAmount | currency }}</td>
           <td>{{ order.createdAt | date: 'mediumDate' }}</td>
           <td>
-            <a [routerLink]="['/orders', order.id]" class="details-link">
+            <a [routerLink]="['/app/orders', order.id]" class="details-link">
               View Details
             </a>
           </td>
@@ -54,5 +56,20 @@
         No orders found.
       </div>
     </ng-template>
+  </div>
+
+  <div class="visitor-popup-backdrop" *ngIf="showVisitorPopup">
+    <div class="visitor-popup">
+      <h2>View Only Access</h2>
+
+      <p>
+        Visitors can’t make changes. Please reach out to
+        <strong>Kranthi Teja</strong> to make changes on the dashboard.
+      </p>
+
+      <button type="button" class="popup-button" (click)="closeVisitorPopup()">
+        Got it
+      </button>
+    </div>
   </div>
 </div>
