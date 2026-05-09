@@ -27,6 +27,7 @@
     </section>
 
     <section class="portal-card-grid" aria-label="Freight Flow 360 portal options">
+      <!-- Admin Portal -->
       <article #revealCard class="portal-card admin-card">
         <h2>Admin Portal</h2>
 
@@ -47,9 +48,10 @@
         </div>
       </article>
 
+      <!-- Customer Portal -->
       <article
         #revealCard
-        class="portal-card placeholder-card"
+        class="portal-card customer-card"
         (click)="showComingSoon('Customer')"
       >
         <h2 class="portal-title">Customer Portal</h2>
@@ -58,19 +60,23 @@
           Track shipments, review order history, and manage freight requests.
         </p>
 
-        <button type="button" class="portal-button">
-          <span>Customer Portal</span>
-        </button>
+        <div class="customer-ship-wrap">
+          <img
+            class="customer-ship-img"
+            src="assets/images/ship.png"
+            alt="Freight ship"
+          />
 
-        <div class="construction-preview">
-          <img [src]="constructionGifUrl" alt="Under construction animation" />
-          <p>Under Construction</p>
+          <button type="button" class="portal-button customer-ship-button">
+            <span>Customer Portal</span>
+          </button>
         </div>
       </article>
 
+      <!-- Driver Portal -->
       <article
         #revealCard
-        class="portal-card placeholder-card"
+        class="portal-card driver-card"
         (click)="showComingSoon('Driver')"
       >
         <h2 class="portal-title">Driver Portal</h2>
@@ -79,19 +85,23 @@
           View delivery assignments, route details, and shipment status updates.
         </p>
 
-        <button type="button" class="portal-button">
-          <span>Driver Portal</span>
-        </button>
+        <div class="driver-jet-wrap">
+          <img
+            class="driver-jet-img"
+            src="assets/images/airjet.png"
+            alt="Air jet"
+          />
 
-        <div class="construction-preview">
-          <img [src]="constructionGifUrl" alt="Under construction animation" />
-          <p>Under Construction</p>
+          <button type="button" class="portal-button driver-jet-button">
+            <span>Driver Portal</span>
+          </button>
         </div>
       </article>
 
+      <!-- Employee Portal -->
       <article
         #revealCard
-        class="portal-card placeholder-card"
+        class="portal-card employee-card"
         (click)="showComingSoon('Employee')"
       >
         <h2 class="portal-title">Employee Portal</h2>
@@ -100,13 +110,16 @@
           Access warehouse tools, internal tasks, and daily operational workflows.
         </p>
 
-        <button type="button" class="portal-button">
-          <span>Employee Portal</span>
-        </button>
+        <div class="employee-rail-wrap">
+          <img
+            class="employee-rail-img"
+            src="assets/images/railway.png"
+            alt="Railway freight"
+          />
 
-        <div class="construction-preview">
-          <img [src]="constructionGifUrl" alt="Under construction animation" />
-          <p>Under Construction</p>
+          <button type="button" class="portal-button employee-rail-button">
+            <span>Employee Portal</span>
+          </button>
         </div>
       </article>
     </section>

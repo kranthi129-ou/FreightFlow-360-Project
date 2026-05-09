@@ -1,5 +1,8 @@
 .portal-page {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
   color: #082b45;
   overflow-x: hidden;
   background-color: #f8fafc;
@@ -12,6 +15,7 @@
 }
 
 .hero-section {
+  flex: 1;
   padding: 48px 24px 70px;
   background: transparent;
 }
@@ -21,6 +25,7 @@
   margin: 0 auto;
   text-align: center;
 }
+
 .hero-title-stack {
   display: inline-flex;
   flex-direction: column;
@@ -91,21 +96,24 @@
 }
 
 .hero-subtitle {
-  max-width: 720px;
-  margin: 0 auto;
+  max-width: 760px;
+  margin: 20px auto 0;
   color: #52677a;
-  font-size: 18px;
-  line-height: 1.5;
+  font-size: 21px;
+  line-height: 1.55;
+  font-weight: 500;
 }
 
 .portal-grid-section {
   margin-top: 36px;
 }
+
 .portal-card-grid {
   display: grid;
   grid-template-columns: repeat(2, 360px);
   justify-content: center;
   gap: 22px 24px;
+  margin-top: 34px;
 }
 
 .portal-card {
@@ -153,6 +161,13 @@
   line-height: 1.45;
 }
 
+.portal-title,
+.portal-desc {
+  transition:
+    transform 0.35s ease,
+    opacity 0.3s ease;
+}
+
 .portal-button,
 .portal-button:visited {
   width: fit-content;
@@ -180,7 +195,7 @@
 .portal-button span {
   display: block;
   transform: skew(12deg);
-  color: 22c584;
+  color: #22c584;
   white-space: nowrap;
   line-height: 1;
 }
@@ -189,146 +204,16 @@
   box-shadow: 0 10px 18px rgba(34, 197, 132, 0.24);
 }
 
+.portal-button:hover span {
+  color: #22c584;
+}
+
 .primary-button {
   background: #5fa943;
   color: #003a5d;
 }
-.coming-soon-toast {
-  position: static;
-  right: 28px;
-  bottom: 28px;
-  z-index: 50;
-  padding: 14px 18px;
-  border-radius: 14px;
-  background: #082b45;
-  color: #ffffff;
-  box-shadow: 0 18px 40px rgba(8, 43, 69, 0.22);
-  font-weight: 700;
-}
 
-@keyframes revealWord {
-  0% {
-    max-width: 0;
-    opacity: 0;
-    transform: translateX(-8px);
-  }
-
-  100% {
-    max-width: 220px;
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideNumbers {
-  0% {
-    transform: translateX(-10px);
-  }
-
-  100% {
-    transform: translateX(14px);
-  }
-}
-
-@media (max-width: 900px) {
-  .portal-grid-section {
-    max-width: 420px;
-  }
-
-  .portal-card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .portal-card {
-    width: 100%;
-    min-height: 220px;
-  }
-}
-
-@media (max-width: 720px) {
-  .hero-section {
-    padding: 42px 18px 56px;
-  }
-
-  .brand-animation {
-    gap: 6px;
-  }
-
-  .portal-grid-section {
-    margin-top: 36px;
-  }
-
-  .portal-card {
-    padding: 28px 22px;
-  }
-}
-
-.portal-title,
-.portal-desc {
-  transition:
-    transform 0.35s ease,
-    opacity 0.3s ease;
-}
-
-.placeholder-card {
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.placeholder-card .construction-preview {
-  position: absolute;
-  left: 50%;
-  top: 82px; /* pushes GIF up */
-  transform: translateX(-50%);
-  width: 88%;
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease,
-    visibility 0.35s ease;
-  text-align: center;
-}
-
-.placeholder-card .construction-preview img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 18px;
-  display: block;
-  box-shadow: 0 10px 18px rgba(0, 58, 93, 0.16);
-}
-
-.placeholder-card .construction-preview p {
-  margin: 8px 0 0;
-  color: #0b3554;
-  font-size: 15px;
-  font-weight: 800;
-  line-height: 1.2;
-}
-
-.placeholder-card:hover .portal-title {
-  transform: translateY(-62px); /* pushes portal title up */
-}
-
-.placeholder-card:hover .portal-desc {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-.placeholder-card:hover .portal-button {
-  opacity: 0;
-  transform: skew(-12deg) translateY(10px);
-  pointer-events: none;
-}
-
-.placeholder-card:hover .construction-preview {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(-6px);
-}
-
+/* Admin card truck hover */
 .admin-card {
   overflow: hidden;
   min-height: 330px;
@@ -349,8 +234,11 @@
   height: auto;
   transform: translateX(-50%) translateY(12px);
   opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
   display: block;
+  pointer-events: none;
 }
 
 .admin-truck-button {
@@ -359,12 +247,10 @@
   left: 50%;
   z-index: 2;
   transform: translateX(-50%) skew(-12deg);
-  transition: left 0.3s ease, top 0.3s ease;
-}
-
-.admin-card:hover .admin-truck-button {
-  top: 8px;
-  left: 42%;
+  transition:
+    left 0.3s ease,
+    top 0.3s ease,
+    box-shadow 0.24s ease;
 }
 
 .admin-truck-button span {
@@ -376,29 +262,240 @@
   transform: translateX(-50%) translateY(0);
 }
 
-.hero-subtitle {
-  max-width: 760px;
-  margin: 20px auto 0;
-  color: #52677a;
-  font-size: 21px;
-  line-height: 1.55;
-  font-weight: 500;
+.admin-card:hover .admin-truck-button {
+  top: 8px;
+  left: 42%;
 }
 
-.portal-card-grid {
-  margin-top: 34px;
-}
-.portal-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 0;
+/* Customer card ship hover */
+.customer-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 330px;
 }
 
-.hero-section {
-  flex: 1;
+.customer-card:hover .portal-title {
+  transform: translateY(-6px);
 }
 
+.customer-card:hover .portal-desc {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+.customer-ship-wrap {
+  position: relative;
+  width: 330px;
+  height: 125px;
+  margin-top: 0;
+}
+
+.customer-ship-img {
+  position: absolute;
+  right: 30px;
+  bottom: -40px;
+  width: 295px;
+  height: auto;
+  opacity: 0;
+  transform: translateY(42px) scale(0.96);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+  display: block;
+  pointer-events: none;
+}
+
+.customer-ship-button {
+  position: absolute;
+  top: 38px;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%) skew(-12deg);
+  transition:
+    left 0.35s ease,
+    top 0.35s ease,
+    box-shadow 0.24s ease;
+}
+
+.customer-ship-button span {
+  transform: skew(12deg);
+  color: #22c584;
+}
+
+.customer-card:hover .customer-ship-img {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.customer-card:hover .customer-ship-button {
+  top: 57px;
+  left: 45%;
+}
+
+.customer-card:hover .customer-ship-button span {
+  color: #22c584;
+}
+
+/* Driver card jet hover */
+.driver-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 330px;
+}
+
+.driver-card:hover .portal-title {
+  transform: translateY(-6px);
+}
+
+.driver-card:hover .portal-desc {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+.driver-jet-wrap {
+  position: relative;
+  width: 330px;
+  height: 125px;
+  margin-top: 0;
+}
+
+.driver-jet-img {
+  position: absolute;
+  right: -105px;
+  bottom: -20px;
+  width: 300px;
+  height: auto;
+  opacity: 0;
+  transform: translateY(42px) scale(0.96);
+  filter: drop-shadow(0 28px 28px rgba(0, 0, 0, 0.85));
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+  display: block;
+  pointer-events: none;
+}
+
+.driver-jet-button {
+  position: absolute;
+  top: 38px;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%) skew(-12deg);
+  transition:
+    left 0.35s ease,
+    top 0.35s ease,
+    box-shadow 0.24s ease;
+}
+
+.driver-jet-button span {
+  transform: skew(12deg);
+  color: #22c584;
+}
+
+.driver-card:hover .driver-jet-img {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.driver-card:hover .driver-jet-button {
+  top: 42px;
+  left: 33%;
+}
+
+.driver-card:hover .driver-jet-button span {
+  color: #22c584;
+}
+
+/* Employee card railway hover */
+.employee-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 330px;
+}
+
+.employee-card:hover .portal-title {
+  transform: translateY(-6px);
+}
+
+.employee-card:hover .portal-desc {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+.employee-rail-wrap {
+  position: relative;
+  width: 330px;
+  height: 125px;
+  margin-top: 0;
+}
+
+.employee-rail-img {
+  position: absolute;
+  right: -75px;
+  bottom: -28px;
+  width: 480px;
+  height: auto;
+  opacity: 0;
+  transform: translateY(42px) scale(0.96);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+  display: block;
+  pointer-events: none;
+}
+
+/* Your simple Employee button version */
+.employee-rail-button {
+  position: absolute;
+  top: 38px;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%) skew(-12deg);
+  transition:
+    left 0.35s ease,
+    top 0.35s ease,
+    box-shadow 0.24s ease;
+}
+
+.employee-rail-button span {
+  transform: skew(12deg);
+  color: #22c584;
+}
+
+.employee-card:hover .employee-rail-img {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.employee-card:hover .employee-rail-button {
+  top: 38px;
+  left: 50%;
+  transform: translateX(-50%) skew(0deg);
+}
+
+.employee-card:hover .employee-rail-button span {
+  transform: skew(0deg);
+  color: #22c584;
+}
+
+/* Toast */
+.coming-soon-toast {
+  position: static;
+  right: 28px;
+  bottom: 28px;
+  z-index: 50;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: #082b45;
+  color: #ffffff;
+  box-shadow: 0 18px 40px rgba(8, 43, 69, 0.22);
+  font-weight: 700;
+}
+
+/* Footer */
 .portal-footer {
   width: 100%;
   margin-top: 48px;
@@ -425,6 +522,199 @@
   color: rgba(255, 255, 255, 0.55);
 }
 
+/* Animations */
+@keyframes revealWord {
+  0% {
+    max-width: 0;
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+
+  100% {
+    max-width: 220px;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideNumbers {
+  0% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    transform: translateX(14px);
+  }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .portal-grid-section {
+    max-width: 420px;
+  }
+
+  .portal-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portal-card {
+    width: 100%;
+    min-height: 220px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .hero-section {
+    padding: 42px 18px 56px;
+  }
+
+  .brand-animation {
+    gap: 6px;
+  }
+
+  .portal-grid-section {
+    margin-top: 36px;
+  }
+
+  .portal-card-grid {
+    grid-template-columns: minmax(0, 360px);
+    justify-content: center;
+    gap: 22px;
+    margin-top: 34px;
+  }
+
+  .portal-card {
+    width: min(100%, 360px);
+    height: 330px;
+    min-height: 330px;
+    padding: 28px 22px;
+    margin: 0 auto;
+  }
+
+  .admin-truck-wrap,
+  .customer-ship-wrap,
+  .driver-jet-wrap,
+  .employee-rail-wrap {
+    width: 100%;
+    height: 125px;
+  }
+
+  /* Admin mobile */
+  .admin-truck-img {
+    left: 54%;
+    top: -20px;
+    width: 280px;
+  }
+
+  .admin-card.scroll-active .admin-truck-img {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .admin-card.scroll-active .admin-truck-button {
+    top: 10px;
+    left: 42%;
+  }
+
+  /* Customer mobile */
+  .customer-ship-img {
+    right: 1px;
+    bottom: -39px;
+    width: 295px;
+  }
+
+  .customer-card.scroll-active .portal-title,
+  .customer-card:hover .portal-title {
+    transform: translateY(-6px);
+  }
+
+  .customer-card.scroll-active .portal-desc,
+  .customer-card:hover .portal-desc {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+
+  .customer-card.scroll-active .customer-ship-img,
+  .customer-card:hover .customer-ship-img {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .customer-card.scroll-active .customer-ship-button,
+  .customer-card:hover .customer-ship-button {
+    top: 57px;
+    left: 45%;
+  }
+
+  /* Driver mobile */
+  .driver-jet-img {
+    right: -95px;
+    bottom: -5px;
+    width: 245px;
+  }
+
+  .driver-card.scroll-active .portal-title,
+  .driver-card:hover .portal-title {
+    transform: translateY(-6px);
+  }
+
+  .driver-card.scroll-active .portal-desc,
+  .driver-card:hover .portal-desc {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+
+  .driver-card.scroll-active .driver-jet-img,
+  .driver-card:hover .driver-jet-img {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .driver-card.scroll-active .driver-jet-button,
+  .driver-card:hover .driver-jet-button {
+    top: 42px;
+    left: 33%;
+  }
+
+  /* Employee mobile */
+  .employee-rail-img {
+    right: -85px;
+    bottom: -20px;
+    width: 450px;
+  }
+
+  .employee-card.scroll-active .portal-title,
+  .employee-card:hover .portal-title {
+    transform: translateY(-6px);
+  }
+
+  .employee-card.scroll-active .portal-desc,
+  .employee-card:hover .portal-desc {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+
+  .employee-card.scroll-active .employee-rail-img,
+  .employee-card:hover .employee-rail-img {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .employee-card.scroll-active .employee-rail-button,
+  .employee-card:hover .employee-rail-button {
+    top: 38px;
+    left: 50%;
+    transform: translateX(-50%) skew(0deg);
+  }
+
+  .employee-card.scroll-active .employee-rail-button span,
+  .employee-card:hover .employee-rail-button span {
+    transform: skew(0deg);
+    color: #22c584;
+  }
+}
+
 @media (max-width: 600px) {
   .portal-footer {
     padding: 12px 18px;
@@ -435,37 +725,4 @@
   .footer-divider {
     margin: 0 6px;
   }
-}
-
-/* Mobile scroll reveal for Admin card */
-.admin-card.scroll-active .admin-truck-img {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.admin-card.scroll-active .admin-truck-button {
-  top: 8px;
-  left: 42%;
-}
-
-/* Mobile scroll reveal for Customer / Driver / Employee cards */
-.placeholder-card.scroll-active .portal-title {
-  transform: translateY(-62px);
-}
-
-.placeholder-card.scroll-active .portal-desc {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-.placeholder-card.scroll-active .portal-button {
-  opacity: 0;
-  transform: skew(-12deg) translateY(10px);
-  pointer-events: none;
-}
-
-.placeholder-card.scroll-active .construction-preview {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(-6px);
 }

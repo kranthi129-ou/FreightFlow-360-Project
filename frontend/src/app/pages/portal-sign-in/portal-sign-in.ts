@@ -51,8 +51,8 @@ export class PortalSignIn implements AfterViewInit, OnDestroy {
         });
       },
       {
-        threshold: 0.35,
-        rootMargin: '-8% 0px -18% 0px'
+        threshold: 0,
+        rootMargin: '-45% 0px -45% 0px'
       }
     );
 
