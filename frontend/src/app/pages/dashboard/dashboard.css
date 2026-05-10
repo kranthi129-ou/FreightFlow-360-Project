@@ -1,3 +1,17 @@
+.dashboard-shell {
+  min-height: calc(100vh - 72px);
+  padding: 36px 24px 70px;
+  color: #082b45;
+  overflow-x: hidden;
+
+  background-color: #f8fafc;
+  background-image:
+    linear-gradient(rgba(248, 250, 252, 0.82), rgba(248, 250, 252, 0.82)),
+    url("data:image/svg+xml,%3Csvg width='720' height='440' viewBox='0 0 720 440' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.9' stroke='%23CBD6DF' stroke-width='1.35'%3E%3Cpath d='M-40 58C34 20 93 22 152 70C211 118 266 120 331 80C395 40 455 26 526 68C597 110 653 116 760 70'/%3E%3Cpath d='M-38 112C42 70 104 72 170 125C236 178 294 179 366 132C438 86 505 75 581 121C658 168 704 171 764 136'/%3E%3Cpath d='M-38 170C48 124 118 126 190 184C263 242 327 241 406 190C485 139 560 132 642 184C724 236 764 234 794 210'/%3E%3Cpath d='M-38 232C52 178 131 184 214 248C297 312 366 307 454 252C542 197 621 196 706 254C791 312 824 306 850 284'/%3E%3Cpath d='M-42 302C55 240 148 250 240 320C332 390 410 381 508 320C606 259 690 265 778 330C866 395 894 383 918 360'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 620px 380px;
+  background-position: top center;
+}
 .dashboard-page {
   max-width: 1100px;
   margin: 0 auto;
@@ -13,27 +27,40 @@
 
 .page-header h1 {
   margin: 0;
-  color: #111827;
+  color: #082b45;
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
 }
 
 .page-header p {
   margin: 8px 0 0;
-  color: #6b7280;
+  color: #52677a;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .primary-link {
-  background-color: #2563eb;
-  color: white;
-  padding: 10px 14px;
-  border-radius: 6px;
+  min-width: 142px;
+  height: 46px;
+  padding: 0 24px;
+  border: 0;
+  background: #0b3554;
+  color: #22c584;
   text-decoration: none;
-  font-weight: 600;
+  font-size: 17px;
+  font-weight: 800;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
 }
 
 .primary-link:hover {
-  background-color: #1d4ed8;
+  box-shadow: 0 10px 18px rgba(34, 197, 132, 0.24);
 }
-
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -42,36 +69,54 @@
 }
 
 .summary-card {
-  background-color: white;
-  border-radius: 8px;
-  padding: 20px;
-  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  border-radius: 25px;
+  padding: 24px 22px;
+  border: 1px solid #e6edf3;
+  box-shadow: 0 14px 34px rgba(8, 43, 69, 0.07);
+  text-align: center;
+
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease;
 }
+
+.summary-card span,
+.summary-card strong {
+  display: block;
+  text-align: center;
+}
+
+
 
 .summary-card span {
   display: block;
-  color: #6b7280;
+  color: #52677a;
   font-size: 14px;
   margin-bottom: 10px;
 }
 
 .summary-card strong {
-  color: #111827;
+  color: #082b45;
   font-size: 28px;
 }
 
 .summary-card.warning strong {
-  color: #dc2626;
+  color: #c8102e;
 }
+
 
 .table-section,
 .message-card,
 .error-card {
-  background-color: white;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  padding: 20px;
+  background: #ffffff;
+  border-radius: 25px;
+  border: 1px solid #e6edf3;
+  padding: 24px;
+  box-shadow: 0 14px 34px rgba(8, 43, 69, 0.07);
 }
+
 
 .error-card {
   color: #b91c1c;
@@ -110,14 +155,35 @@ td {
   color: #111827;
 }
 
-.status-badge {
-  display: inline-block;
-  background-color: #eef2ff;
-  color: #3730a3;
-  padding: 4px 8px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
+.status-pending {
+  background-color: #fff7ed;
+  color: #c2410c;
+}
+
+.status-processing {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.status-completed {
+  background-color: #ecfdf5;
+  color: #047857;
+}
+
+.status-delivered {
+  background-color: #ecfdf5;
+  color: #047857;
+}
+
+.status-shipped {
+  background-color: #f0f9ff;
+  color: #0369a1;
+}
+
+.status-cancelled,
+.status-canceled {
+  background-color: #fef2f2;
+  color: #b91c1c;
 }
 
 .empty-state {

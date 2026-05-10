@@ -1,132 +1,134 @@
-<div class="create-order-page">
-  <div class="page-header">
-    <div>
-      <h1>Create Order</h1>
-      <p>Create a customer order with one or more warehouse products.</p>
+<div class="page-shell">
+  <div class="create-order-page">
+    <div class="page-header">
+      <div>
+        <h1>Create Order</h1>
+        <p>Create a customer order with one or more warehouse products.</p>
+      </div>
+
+      <a routerLink="/app/orders" class="secondary-link">Back to Orders</a>
     </div>
 
-    <a routerLink="/app/orders" class="secondary-link">Back to Orders</a>
-  </div>
-
-  <div *ngIf="loadingProducts" class="message-card">
-    Loading products...
-  </div>
-
-  <div *ngIf="errorMessage" class="error-card">
-    {{ errorMessage }}
-  </div>
-
-  <div *ngIf="successMessage" class="success-card">
-    {{ successMessage }}
-  </div>
-
-  <div class="form-card">
-    <h2>Customer Information</h2>
-
-    <div class="form-grid">
-      <div class="form-group">
-        <label for="customerName">Customer Name *</label>
-        <input
-          id="customerName"
-          type="text"
-          [(ngModel)]="customerName"
-          placeholder="Enter customer name"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="customerEmail">Customer Email</label>
-        <input
-          id="customerEmail"
-          type="email"
-          [(ngModel)]="customerEmail"
-          placeholder="customer@example.com"
-        />
-      </div>
-    </div>
-  </div>
-
-  <div class="form-card">
-    <h2>Add Product</h2>
-
-    <div class="item-row">
-      <div class="form-group">
-        <label for="product">Product</label>
-        <select id="product" [(ngModel)]="selectedProductId">
-          <option [ngValue]="null">Select product</option>
-          <option *ngFor="let product of products" [ngValue]="product.id">
-            {{ product.name }} — Available: {{ product.quantity }} — {{ product.unitPrice | currency }}
-          </option>
-        </select>
-      </div>
-
-      <div class="form-group quantity-field">
-        <label for="quantity">Quantity</label>
-        <input
-          id="quantity"
-          type="number"
-          min="1"
-          [(ngModel)]="selectedQuantity"
-        />
-      </div>
-
-      <button type="button" class="add-button" (click)="addItem()">
-        Add Item
-      </button>
-    </div>
-  </div>
-
-  <div class="table-card">
-    <div class="section-header">
-      <h2>Order Items</h2>
-      <strong>Total: {{ getTotalAmount() | currency }}</strong>
+    <div *ngIf="loadingProducts" class="message-card">
+      Loading products...
     </div>
 
-    <table *ngIf="selectedItems.length > 0; else noItems">
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Available</th>
-          <th>Quantity</th>
-          <th>Unit Price</th>
-          <th>Subtotal</th>
-          <th class="actions-column">Actions</th>
-        </tr>
-      </thead>
+    <div *ngIf="errorMessage" class="error-card">
+      {{ errorMessage }}
+    </div>
 
-      <tbody>
-        <tr *ngFor="let item of selectedItems">
-          <td>{{ item.productName }}</td>
-          <td>{{ item.availableQuantity }}</td>
-          <td>{{ item.quantity }}</td>
-          <td>{{ item.unitPrice | currency }}</td>
-          <td>{{ item.subtotal | currency }}</td>
-          <td>
-            <button type="button" class="remove-button" (click)="removeItem(item.productId)">
-              Remove
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div *ngIf="successMessage" class="success-card">
+      {{ successMessage }}
+    </div>
 
-    <ng-template #noItems>
-      <div class="empty-state">
-        No products added to this order yet.
+    <div class="form-card">
+      <h2>Customer Information</h2>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="customerName">Customer Name *</label>
+          <input
+            id="customerName"
+            type="text"
+            [(ngModel)]="customerName"
+            placeholder="Enter customer name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="customerEmail">Customer Email</label>
+          <input
+            id="customerEmail"
+            type="email"
+            [(ngModel)]="customerEmail"
+            placeholder="customer@example.com"
+          />
+        </div>
       </div>
-    </ng-template>
+    </div>
 
-    <div class="form-actions">
-      <button
-        type="button"
-        class="primary-button"
-        [disabled]="saving"
-        (click)="submitOrder()"
-      >
-        {{ saving ? 'Creating...' : 'Submit Order' }}
-      </button>
+    <div class="form-card">
+      <h2>Add Product</h2>
 
-      <a routerLink="/app/orders" class="cancel-link">Cancel</a>
+      <div class="item-row">
+        <div class="form-group">
+          <label for="product">Product</label>
+          <select id="product" [(ngModel)]="selectedProductId">
+            <option [ngValue]="null">Select product</option>
+            <option *ngFor="let product of products" [ngValue]="product.id">
+              {{ product.name }} — Available: {{ product.quantity }} — {{ product.unitPrice | currency }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group quantity-field">
+          <label for="quantity">Quantity</label>
+          <input
+            id="quantity"
+            type="number"
+            min="1"
+            [(ngModel)]="selectedQuantity"
+          />
+        </div>
+
+        <button type="button" class="add-button" (click)="addItem()">
+          Add Item
+        </button>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="section-header">
+        <h2>Order Items</h2>
+        <strong>Total: {{ getTotalAmount() | currency }}</strong>
+      </div>
+
+      <table *ngIf="selectedItems.length > 0; else noItems">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Available</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Subtotal</th>
+            <th class="actions-column">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of selectedItems">
+            <td>{{ item.productName }}</td>
+            <td>{{ item.availableQuantity }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unitPrice | currency }}</td>
+            <td>{{ item.subtotal | currency }}</td>
+            <td>
+              <button type="button" class="remove-button" (click)="removeItem(item.productId)">
+                Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #noItems>
+        <div class="empty-state">
+          No products added to this order yet.
+        </div>
+      </ng-template>
+
+      <div class="form-actions">
+        <button
+          type="button"
+          class="primary-button"
+          [disabled]="saving"
+          (click)="submitOrder()"
+        >
+          {{ saving ? 'Creating...' : 'Submit Order' }}
+        </button>
+
+        <a routerLink="/app/orders" class="cancel-link">Cancel</a>
+      </div>
     </div>
   </div>
 </div>

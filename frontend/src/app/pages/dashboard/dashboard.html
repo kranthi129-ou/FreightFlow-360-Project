@@ -1,4 +1,5 @@
-<div class="dashboard-page">
+<div class="dashboard-shell">
+  <div class="dashboard-page">
   <div class="page-header">
     <div>
       <h1>Dashboard</h1>
@@ -18,7 +19,7 @@
 
   <ng-container *ngIf="summary && !loading && !errorMessage">
     <div class="summary-grid">
-      <div class="summary-card">
+      <div class="summary-card center-metric">
         <span>Total Products</span>
         <strong>{{ summary.totalProducts }}</strong>
       </div>
@@ -60,7 +61,12 @@
             <td>#{{ order.id }}</td>
             <td>{{ order.customerName }}</td>
             <td>
-              <span class="status-badge">{{ order.status }}</span>
+              <span
+                class="status-badge"
+                [ngClass]="'status-' + (order.status || '').toLowerCase()"
+              >
+                {{ order.status }}
+              </span>
             </td>
             <td>{{ order.totalAmount | currency }}</td>
             <td>{{ order.createdAt | date: 'mediumDate' }}</td>
@@ -75,4 +81,5 @@
       </ng-template>
     </section>
   </ng-container>
+</div>
 </div>

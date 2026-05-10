@@ -169,15 +169,15 @@ export class CreateOrder implements OnInit {
           this.cdr.detectChanges();
 
           if (order.id) {
-            this.router.navigate(['/orders', order.id]);
+            this.router.navigate(['/app/orders', order.id]);
             return;
           }
 
-          this.router.navigate(['/orders']);
+          this.router.navigate(['/app/orders']);
         },
         error: (error) => {
           console.error('Create order error:', error);
-          this.errorMessage = 'Unable to create order. Check order data and backend API.';
+          this.errorMessage = 'Visitor can’t create orders. Please reach out to Kranthi to get admin access.';
           this.cdr.detectChanges();
         }
       });

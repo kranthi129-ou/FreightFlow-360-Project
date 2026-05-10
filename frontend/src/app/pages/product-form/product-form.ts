@@ -118,7 +118,7 @@ export class ProductForm implements OnInit {
           },
           error: (error) => {
             console.error('Update product error:', error);
-            this.errorMessage = 'Unable to update product.';
+            this.errorMessage = 'Visitor can’t update products. Please reach out to Kranthi to get admin access.';
             this.cdr.detectChanges();
           }
         });
@@ -140,7 +140,7 @@ export class ProductForm implements OnInit {
         },
         error: (error) => {
           console.error('Create product error:', error);
-          this.errorMessage = 'Unable to create product.';
+          this.errorMessage = 'Visitor can’t make changes. Please reach out to Kranthi to get admin access.';
           this.cdr.detectChanges();
         }
       });

@@ -83,7 +83,7 @@ export class LowStock implements OnInit {
       },
       error: (error) => {
         console.error('Adjust stock error:', error);
-        this.errorMessage = 'Unable to adjust stock.';
+        this.errorMessage = 'Visitor can’t adjust stock. Please reach out to Kranthi to get admin access.';
         this.cdr.detectChanges();
       }
     });

@@ -4,6 +4,7 @@ import backend.dto.InventoryAdjustRequest;
 import backend.dto.InventoryResponse;
 import backend.service.InventoryService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public class InventoryController {
     }
 
     @PutMapping("/{productId}/adjust")
+    @PreAuthorize("hasRole('ADMIN')")
     public InventoryResponse adjustInventory(
             @PathVariable Long productId,
             @Valid @RequestBody InventoryAdjustRequest request

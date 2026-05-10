@@ -1,29 +1,53 @@
 .navbar {
-  background-color: #1f2937;
+  background: #0b3554;
   color: white;
-  padding: 16px 24px;
+  padding: 0 28px;
+  min-height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0 12px 28px rgba(8, 43, 69, 0.16);
 }
 
-.navbar-title {
-  font-size: 20px;
-  font-weight: 700;
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  color: #22c584;
+  text-decoration: none;
+  font-family: 'Exo 2', Arial, sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: -0.08em;
+  white-space: nowrap;
+}
+
+.navbar-admin {
+  color: rgba(255, 255, 255, 0.82);
+  font-family: 'Roboto Condensed', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0;
 }
 
 .navbar-links {
   display: flex;
-  gap: 16px;
+  gap: 18px;
 }
 
 .navbar-links a {
-  color: #d1d5db;
+  color: rgba(255, 255, 255, 0.78);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .navbar-links a:hover,
 .navbar-links a.active {
-  color: white;
+  color: #22c584;
 }

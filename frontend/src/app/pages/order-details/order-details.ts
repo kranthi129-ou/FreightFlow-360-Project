@@ -116,7 +116,7 @@ export class OrderDetails implements OnInit {
         },
         error: (error) => {
           console.error('Update order status error:', error);
-          this.errorMessage = 'Unable to update order status.';
+          this.errorMessage = 'Visitor can’t update order status. Please reach out to Kranthi to get admin access.';
           this.cdr.detectChanges();
         }
       });

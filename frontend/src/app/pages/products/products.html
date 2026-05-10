@@ -1,92 +1,86 @@
-<div class="products-page">
-  <div class="page-header">
-    <div>
-      <h1>Products</h1>
-      <p>View, search, add, edit, and delete warehouse products.</p>
+<div class="page-shell">
+  <div class="products-page">
+    <div class="page-header">
+      <div>
+        <h1>Products</h1>
+        <p>View, search, add, edit, and delete warehouse products.</p>
+      </div>
+
+      <a routerLink="/app/products/new" class="primary-button">Add Product</a>
     </div>
 
-    <a routerLink="/app/products/new" class="primary-button">Add Product</a>
-  </div>
+    <div class="toolbar">
+      <input
+        type="text"
+        placeholder="Search by name, SKU, or category"
+        [(ngModel)]="searchKeyword"
+        (keyup.enter)="searchProducts()"
+      />
 
-  <div class="toolbar">
-    <input
-      type="text"
-      placeholder="Search by name, SKU, or category"
-      [(ngModel)]="searchKeyword"
-      (keyup.enter)="searchProducts()"
-    />
+      <button type="button" (click)="searchProducts()">Search</button>
+      <button type="button" class="secondary-button" (click)="clearSearch()">Clear</button>
+    </div>
 
-    <button type="button" (click)="searchProducts()">Search</button>
-    <button type="button" class="secondary-button" (click)="clearSearch()">Clear</button>
-  </div>
+    <div *ngIf="loading" class="message-card">
+      Loading products...
+    </div>
 
-  <div *ngIf="loading" class="message-card">
-    Loading products...
-  </div>
+    <div *ngIf="errorMessage" class="error-card">
+      {{ errorMessage }}
+    </div>
 
-  <div *ngIf="errorMessage" class="error-card">
-    {{ errorMessage }}
-  </div>
+    <div class="table-card" *ngIf="!loading && !errorMessage">
+      <table *ngIf="products.length > 0; else noProducts">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>SKU</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Reorder Level</th>
+            <th>Status</th>
+            <th class="actions-column">Actions</th>
+          </tr>
+        </thead>
 
-  <div class="table-card" *ngIf="!loading && !errorMessage">
-    <table *ngIf="products.length > 0; else noProducts">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>SKU</th>
-          <th>Category</th>
-          <th>Quantity</th>
-          <th>Unit Price</th>
-          <th>Reorder Level</th>
-          <th>Status</th>
-          <th class="actions-column">Actions</th>
-        </tr>
-      </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{ product.name }}</td>
 
-      <tbody>
-        <tr *ngFor="let product of products">
-          <td>
-            <div class="product-name-cell">
-              <div class="product-placeholder">
-                {{ product.name.charAt(0).toUpperCase() }}
-              </div>
+            <td>{{ product.sku }}</td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.unitPrice | currency }}</td>
+            <td>{{ product.reorderLevel }}</td>
 
-              <span>{{ product.name }}</span>
-            </div>
-          </td>
+            <td>
+              <span
+                class="stock-badge"
+                [class.low-stock]="isLowStock(product)"
+              >
+                {{ isLowStock(product) ? 'Low Stock' : 'In Stock' }}
+              </span>
+            </td>
 
-          <td>{{ product.sku }}</td>
-          <td>{{ product.category }}</td>
-          <td>{{ product.quantity }}</td>
-          <td>{{ product.unitPrice | currency }}</td>
-          <td>{{ product.reorderLevel }}</td>
+            <td class="actions">
+              <a [routerLink]="['/app/products/edit', product.id]" class="edit-link">
+                Edit
+              </a>
 
-          <td>
-            <span
-              class="stock-badge"
-              [class.low-stock]="isLowStock(product)"
-            >
-              {{ isLowStock(product) ? 'Low Stock' : 'In Stock' }}
-            </span>
-          </td>
+              <button type="button" class="delete-button" (click)="deleteProduct(product)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-          <td class="actions">
-            <a [routerLink]="['/app/products/edit', product.id]" class="edit-link">
-              Edit
-            </a>
-
-            <button type="button" class="delete-button" (click)="deleteProduct(product)">
-              Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <ng-template #noProducts>
-      <div class="empty-state">
-        No products found.
-      </div>
-    </ng-template>
+      <ng-template #noProducts>
+        <div class="empty-state">
+          No products found.
+        </div>
+      </ng-template>
+    </div>
   </div>
 </div>
