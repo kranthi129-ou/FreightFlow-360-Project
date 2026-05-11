@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { API_BASE_URL } from './api-base';
 
 import { Product } from '../models/product.model';
 
@@ -8,8 +9,8 @@ import { Product } from '../models/product.model';
   providedIn: 'root'
 })
 export class InventoryService {
-  private readonly apiUrl = 'http://localhost:8082/api/inventory';
-  private readonly productApiUrl = 'http://localhost:8082/api/products';
+  private readonly apiUrl = `${API_BASE_URL}/api/inventory`;
+  private readonly productApiUrl = `${API_BASE_URL}/api/products`;
 
   constructor(private http: HttpClient) {}
 

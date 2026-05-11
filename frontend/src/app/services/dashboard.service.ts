@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_BASE_URL } from './api-base';
 
 import { DashboardSummary } from '../models/dashboard-summary.model';
 
@@ -8,7 +9,8 @@ import { DashboardSummary } from '../models/dashboard-summary.model';
   providedIn: 'root'
 })
 export class DashboardService {
-  private readonly apiUrl = 'http://localhost:8082/api/dashboard';
+  // dashboard.service.ts
+  private readonly apiUrl = `${API_BASE_URL}/api/dashboard`;
 
   constructor(private http: HttpClient) {}
 

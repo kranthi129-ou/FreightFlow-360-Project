@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { API_BASE_URL } from './api-base';
+
 
 export interface SetupStatusResponse {
   setupRequired: boolean;
@@ -28,7 +30,7 @@ export interface AuthResponse {
   providedIn: 'root'
 })
 export class AdminAuthService {
-  private readonly apiUrl = `http://${window.location.hostname}:8082/api/admin/auth`;
+  private readonly apiUrl = `${API_BASE_URL}/api/admin/auth`;
   private readonly tokenKey = 'freightflow360_admin_token';
   private readonly adminKey = 'freightflow360_admin_user';
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { API_BASE_URL } from './api-base';
 import { Order } from '../models/order.model';
 
 export interface CreateOrderItemRequest {
@@ -19,7 +19,7 @@ export interface CreateOrderRequest {
   providedIn: 'root'
 })
 export class OrderService {
-  private readonly apiUrl = 'http://localhost:8082/api/orders';
+  private readonly apiUrl = `${API_BASE_URL}/api/orders`;
 
   constructor(private http: HttpClient) {}
 

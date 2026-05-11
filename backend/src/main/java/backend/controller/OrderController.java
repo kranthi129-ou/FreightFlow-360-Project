@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "app.cors.allowed-origins=${CORS_ALLOWED_ORIGINS:http://localhost:4200}")
 public class OrderController {
 
     private final OrderService orderService;
