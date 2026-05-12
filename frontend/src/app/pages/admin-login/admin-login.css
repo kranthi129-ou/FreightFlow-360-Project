@@ -305,3 +305,9 @@
 
 
 }
+
+.disabled-create-account {
+  color: #0b3554;
+  font-weight: 900;
+  cursor: default;
+}
