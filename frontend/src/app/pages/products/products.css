@@ -86,9 +86,22 @@
 
 .toolbar input {
   flex: 1;
+  min-height: 42px;
   padding: 10px 12px;
   border: 1px solid #d1d5db;
-  border-radius: 6px;
+  border-radius: 8px;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.toolbar input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 10px;
 }
 
 .toolbar button {
@@ -127,6 +140,11 @@
   box-shadow: 0 14px 34px rgba(8, 43, 69, 0.07);
 }
 
+.message-card,
+.error-card {
+  margin-bottom: 16px;
+}
+
 .error-card {
   color: #b91c1c;
   background-color: #fef2f2;
@@ -156,13 +174,17 @@ td {
 }
 
 .stock-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
   background-color: #ecfdf5;
   color: #047857;
-  padding: 4px 8px;
+  padding: 5px 10px;
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 .stock-badge.low-stock {
@@ -188,6 +210,7 @@ td {
 
 .edit-link:hover {
   color: #22c584;
+  text-decoration: underline;
 }
 
 .delete-button {
@@ -203,21 +226,196 @@ td {
   color: #6b7280;
   padding: 16px;
   background-color: #f9fafb;
-  border-radius: 6px;
+  border-radius: 10px;
 }
 
-@media (max-width: 600px) {
-  .page-header,
-  .toolbar {
+/* Tablet */
+@media (max-width: 900px) {
+  .page-shell {
+    min-height: calc(100vh - 56px);
+    padding: 24px 14px 52px;
+    background-size: 520px 320px;
+  }
+
+  .page-header {
+    align-items: flex-start;
     flex-direction: column;
-    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .page-header h1 {
+    font-size: 32px;
+  }
+
+  .page-header p {
+    font-size: 15px;
   }
 
   .page-header .primary-button {
     margin-top: 0;
   }
 
-  .table-card {
-    overflow-x: auto;
+  .primary-button {
+    width: 100%;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .toolbar button {
+    width: 100%;
+  }
+
+  .table-card,
+  .message-card,
+  .error-card {
+    border-radius: 20px;
+    padding: 18px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .page-shell {
+    padding: 18px 10px 42px;
+  }
+
+  .page-header h1 {
+    font-size: 28px;
+  }
+
+  .page-header p {
+    font-size: 14px;
+  }
+
+  .table-card,
+  .message-card,
+  .error-card {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .toolbar input {
+    font-size: 16px;
+  }
+
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  table {
+    border-collapse: separate;
+  }
+
+  tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  tr {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 12px;
+  }
+
+  td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 10px 4px;
+    text-align: right;
+    font-size: 14px;
+  }
+
+  td::before {
+    content: attr(data-label);
+    color: #52677a;
+    font-weight: 800;
+    text-align: left;
+    flex-shrink: 0;
+  }
+
+  td:first-child {
+    align-items: flex-start;
+    font-weight: 800;
+  }
+
+  td:last-child {
+    border-bottom: none;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  td:last-child::before {
+    display: none;
+  }
+
+  .actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .edit-link,
+  .delete-button {
+    min-height: 40px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    font-weight: 800;
+  }
+
+  .edit-link {
+    background: #eefaf4;
+    color: #0b3554;
+  }
+
+  .delete-button {
+    background: #fef2f2;
+    color: #dc2626;
+  }
+
+  .edit-link:hover {
+    color: #0b3554;
+    text-decoration: none;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
+  .toolbar-actions {
+    grid-template-columns: 1fr;
+  }
+
+  td {
+    font-size: 13px;
+  }
+
+  .actions {
+    grid-template-columns: 1fr;
   }
 }

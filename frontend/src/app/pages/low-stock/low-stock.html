@@ -13,8 +13,6 @@
       Loading low-stock products...
     </div>
 
-
-
     <div *ngIf="errorMessage" class="error-card">
       {{ errorMessage }}
     </div>
@@ -39,7 +37,7 @@
 
         <tbody>
           <tr *ngFor="let product of lowStockProducts">
-            <td>
+            <td data-label="Product">
               <div class="product-name-cell">
                 <span class="product-placeholder">
                   {{ product.name ? product.name.charAt(0).toUpperCase() : '?' }}
@@ -49,14 +47,17 @@
               </div>
             </td>
 
-            <td>{{ product.sku }}</td>
-            <td>{{ product.category }}</td>
-            <td>
+            <td data-label="SKU">{{ product.sku }}</td>
+            <td data-label="Category">{{ product.category }}</td>
+
+            <td data-label="Current Quantity">
               <span class="quantity-warning">{{ product.quantity }}</span>
             </td>
-            <td>{{ product.reorderLevel }}</td>
-            <td>{{ product.unitPrice | currency }}</td>
-            <td>
+
+            <td data-label="Reorder Level">{{ product.reorderLevel }}</td>
+            <td data-label="Unit Price">{{ product.unitPrice | currency }}</td>
+
+            <td data-label="Adjust Stock">
               <div class="adjust-stock">
                 <input
                   type="number"

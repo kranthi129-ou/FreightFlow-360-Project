@@ -34,16 +34,27 @@
 
         <tbody>
           <tr *ngFor="let order of orders">
-            <td>#{{ order.id }}</td>
-            <td>{{ order.customerName }}</td>
-            <td>
+            <td data-label="Order ID">#{{ order.id }}</td>
+
+            <td data-label="Customer">
+              {{ order.customerName }}
+            </td>
+
+            <td data-label="Status">
               <span class="status-badge" [ngClass]="getStatusClass(order.status)">
                 {{ order.status }}
               </span>
             </td>
-            <td>{{ order.totalAmount | currency }}</td>
-            <td>{{ order.createdAt | date: 'mediumDate' }}</td>
-            <td>
+
+            <td data-label="Total Amount">
+              {{ order.totalAmount | currency }}
+            </td>
+
+            <td data-label="Created Date">
+              {{ order.createdAt | date: 'mediumDate' }}
+            </td>
+
+            <td data-label="Actions">
               <a [routerLink]="['/app/orders', order.id]" class="details-link">
                 View Details
               </a>

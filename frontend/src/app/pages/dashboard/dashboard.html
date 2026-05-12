@@ -1,85 +1,85 @@
 <div class="dashboard-shell">
   <div class="dashboard-page">
-  <div class="page-header">
-    <div>
-      <h1>Dashboard</h1>
-      <p>Overview of warehouse products, orders, inventory value, and low-stock items.</p>
+    <div class="page-header">
+      <div>
+        <h1>Dashboard</h1>
+        <p>Overview of warehouse products, orders, inventory value, and low-stock items.</p>
+      </div>
+
+      <a routerLink="/app/low-stock" class="primary-link">View Low Stock</a>
     </div>
 
-    <a routerLink="/app/low-stock" class="primary-link">View Low Stock</a>
-  </div>
-
-  <div *ngIf="loading" class="message-card">
-    Loading dashboard data...
-  </div>
-
-  <div *ngIf="errorMessage" class="error-card">
-    {{ errorMessage }}
-  </div>
-
-  <ng-container *ngIf="summary && !loading && !errorMessage">
-    <div class="summary-grid">
-      <div class="summary-card center-metric">
-        <span>Total Products</span>
-        <strong>{{ summary.totalProducts }}</strong>
-      </div>
-
-      <div class="summary-card">
-        <span>Total Orders</span>
-        <strong>{{ summary.totalOrders }}</strong>
-      </div>
-
-      <div class="summary-card warning">
-        <span>Low Stock Items</span>
-        <strong>{{ summary.lowStockCount }}</strong>
-      </div>
-
-      <div class="summary-card">
-        <span>Total Inventory Value</span>
-        <strong>{{ summary.totalInventoryValue | currency }}</strong>
-      </div>
+    <div *ngIf="loading" class="message-card">
+      Loading dashboard data...
     </div>
 
-    <section class="table-section">
-      <div class="section-header">
-        <h2>Recent Orders</h2>
-      </div>
+    <div *ngIf="errorMessage" class="error-card">
+      {{ errorMessage }}
+    </div>
 
-      <table *ngIf="summary.recentOrders.length > 0; else noRecentOrders">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Customer</th>
-            <th>Status</th>
-            <th>Total</th>
-            <th>Created</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr *ngFor="let order of summary.recentOrders">
-            <td>#{{ order.id }}</td>
-            <td>{{ order.customerName }}</td>
-            <td>
-              <span
-                class="status-badge"
-                [ngClass]="'status-' + (order.status || '').toLowerCase()"
-              >
-                {{ order.status }}
-              </span>
-            </td>
-            <td>{{ order.totalAmount | currency }}</td>
-            <td>{{ order.createdAt | date: 'mediumDate' }}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <ng-template #noRecentOrders>
-        <div class="empty-state">
-          No recent orders found.
+    <ng-container *ngIf="summary && !loading && !errorMessage">
+      <div class="summary-grid">
+        <div class="summary-card">
+          <span>Total Products</span>
+          <strong>{{ summary.totalProducts }}</strong>
         </div>
-      </ng-template>
-    </section>
-  </ng-container>
-</div>
+
+        <div class="summary-card">
+          <span>Total Orders</span>
+          <strong>{{ summary.totalOrders }}</strong>
+        </div>
+
+        <div class="summary-card warning">
+          <span>Low Stock Items</span>
+          <strong>{{ summary.lowStockCount }}</strong>
+        </div>
+
+        <div class="summary-card">
+          <span>Total Inventory Value</span>
+          <strong>{{ summary.totalInventoryValue | currency }}</strong>
+        </div>
+      </div>
+
+      <section class="table-section">
+        <div class="section-header">
+          <h2>Recent Orders</h2>
+        </div>
+
+        <table *ngIf="summary.recentOrders.length > 0; else noRecentOrders">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Status</th>
+              <th>Total</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let order of summary.recentOrders">
+              <td data-label="Order ID">#{{ order.id }}</td>
+              <td data-label="Customer">{{ order.customerName }}</td>
+              <td data-label="Status">
+                <span
+                  class="status-badge"
+                  [ngClass]="'status-' + (order.status || '').toLowerCase()"
+                >
+                  {{ order.status }}
+                </span>
+              </td>
+              <td data-label="Total">{{ order.totalAmount | currency }}</td>
+              <td data-label="Created">{{ order.createdAt | date: 'mediumDate' }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ng-template #noRecentOrders>
+          <div class="empty-state">
+            No recent orders found.
+          </div>
+        </ng-template>
+      </section>
+    </ng-container>
+  </div>
 </div>

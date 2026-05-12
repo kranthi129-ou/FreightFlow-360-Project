@@ -12,6 +12,7 @@
   background-size: 620px 380px;
   background-position: top center;
 }
+
 .dashboard-page {
   max-width: 1100px;
   margin: 0 auto;
@@ -61,6 +62,7 @@
 .primary-link:hover {
   box-shadow: 0 10px 18px rgba(34, 197, 132, 0.24);
 }
+
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -88,10 +90,7 @@
   text-align: center;
 }
 
-
-
 .summary-card span {
-  display: block;
   color: #52677a;
   font-size: 14px;
   margin-bottom: 10px;
@@ -106,7 +105,6 @@
   color: #c8102e;
 }
 
-
 .table-section,
 .message-card,
 .error-card {
@@ -116,7 +114,6 @@
   padding: 24px;
   box-shadow: 0 14px 34px rgba(8, 43, 69, 0.07);
 }
-
 
 .error-card {
   color: #b91c1c;
@@ -155,6 +152,18 @@ td {
   color: #111827;
 }
 
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
 .status-pending {
   background-color: #fff7ed;
   color: #c2410c;
@@ -190,22 +199,160 @@ td {
   color: #6b7280;
   padding: 16px;
   background-color: #f9fafb;
-  border-radius: 6px;
+  border-radius: 10px;
 }
 
+/* Tablet */
 @media (max-width: 900px) {
-  .summary-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .dashboard-shell {
+    min-height: calc(100vh - 56px);
+    padding: 24px 14px 52px;
+    background-size: 520px 320px;
   }
 
   .page-header {
     align-items: flex-start;
     flex-direction: column;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .page-header h1 {
+    font-size: 32px;
+  }
+
+  .page-header p {
+    font-size: 15px;
+  }
+
+  .primary-link {
+    width: 100%;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .table-section,
+  .message-card,
+  .error-card {
+    border-radius: 20px;
+    padding: 18px;
   }
 }
 
-@media (max-width: 600px) {
+/* Mobile */
+@media (max-width: 650px) {
+  .dashboard-shell {
+    padding: 18px 10px 42px;
+  }
+
+  .page-header h1 {
+    font-size: 28px;
+  }
+
+  .page-header p {
+    font-size: 14px;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .summary-card {
+    border-radius: 18px;
+    padding: 18px 12px;
+  }
+
+  .summary-card span {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .summary-card strong {
+    font-size: 24px;
+  }
+
+  .table-section,
+  .message-card,
+  .error-card {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .section-header h2 {
+    font-size: 20px;
+  }
+
+  /* Recent Orders table becomes cards */
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  table {
+    border-collapse: separate;
+  }
+
+  tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  tr {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 12px;
+  }
+
+  td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 10px 4px;
+    text-align: right;
+    font-size: 14px;
+  }
+
+  td::before {
+    content: attr(data-label);
+    color: #52677a;
+    font-weight: 800;
+    text-align: left;
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  .status-badge {
+    font-size: 12px;
+    min-height: 26px;
+    padding: 5px 9px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
   .summary-grid {
     grid-template-columns: 1fr;
+  }
+
+  .summary-card {
+    padding: 18px 16px;
   }
 }
