@@ -1,13 +1,39 @@
 <header class="navbar">
   <div class="navbar-brand">
-    <span class="brand">FreightFlow360</span>
+    <a routerLink="/app/dashboard" class="brand" (click)="closeMenu()">
+      FreightFlow360
+    </a>
+
     <span class="navbar-admin">Admin</span>
   </div>
 
-  <nav class="navbar-links">
-    <a routerLink="/app/dashboard" routerLinkActive="active">Dashboard</a>
-    <a routerLink="/app/products" routerLinkActive="active">Products</a>
-    <a routerLink="/app/orders" routerLinkActive="active">Orders</a>
-    <a routerLink="/app/low-stock" routerLinkActive="active">Low Stock</a>
+  <button
+    type="button"
+    class="menu-toggle"
+    aria-label="Toggle navigation menu"
+    [attr.aria-expanded]="isMenuOpen"
+    (click)="toggleMenu()"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav class="navbar-links" [class.is-open]="isMenuOpen">
+    <a routerLink="/app/dashboard" routerLinkActive="active" (click)="closeMenu()">
+      Dashboard
+    </a>
+
+    <a routerLink="/app/products" routerLinkActive="active" (click)="closeMenu()">
+      Products
+    </a>
+
+    <a routerLink="/app/orders" routerLinkActive="active" (click)="closeMenu()">
+      Orders
+    </a>
+
+    <a routerLink="/app/low-stock" routerLinkActive="active" (click)="closeMenu()">
+      Low Stock
+    </a>
   </nav>
 </header>
