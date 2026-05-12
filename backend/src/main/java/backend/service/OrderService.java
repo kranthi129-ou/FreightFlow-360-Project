@@ -5,6 +5,8 @@ import backend.dto.OrderItemResponse;
 import backend.dto.OrderRequest;
 import backend.dto.OrderResponse;
 import backend.dto.OrderStatusUpdateRequest;
+import backend.exception.InsufficientStockException;
+import backend.exception.ResourceNotFoundException;
 import backend.model.Order;
 import backend.model.OrderItem;
 import backend.model.OrderStatus;
@@ -13,8 +15,6 @@ import backend.repository.OrderRepository;
 import backend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import backend.exception.InsufficientStockException;
-import backend.exception.ResourceNotFoundException;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -30,6 +30,7 @@ public class OrderService {
         this.productRepository = productRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<OrderResponse> getAllOrders() {
         return orderRepository.findAllByOrderByCreatedAtDesc()
                 .stream()
@@ -37,6 +38,7 @@ public class OrderService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
     public OrderResponse getOrderById(Long id) {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + id));
@@ -56,10 +58,20 @@ public class OrderService {
 
         for (OrderItemRequest itemRequest : request.getItems()) {
             Product product = productRepository.findById(itemRequest.getProductId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + itemRequest.getProductId()));
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            "Product not found with id: " + itemRequest.getProductId()
+                    ));
 
             Integer requestedQuantity = itemRequest.getQuantity();
             Integer availableQuantity = product.getQuantity();
+
+            if (requestedQuantity == null || requestedQuantity <= 0) {
+                throw new IllegalArgumentException("Quantity must be greater than zero.");
+            }
+
+            if (availableQuantity == null) {
+                availableQuantity = 0;
+            }
 
             if (requestedQuantity > availableQuantity) {
                 throw new InsufficientStockException(
@@ -70,6 +82,11 @@ public class OrderService {
             }
 
             BigDecimal unitPrice = product.getUnitPrice();
+
+            if (unitPrice == null) {
+                unitPrice = BigDecimal.ZERO;
+            }
+
             BigDecimal subtotal = unitPrice.multiply(BigDecimal.valueOf(requestedQuantity));
 
             OrderItem orderItem = new OrderItem(
@@ -98,7 +115,7 @@ public class OrderService {
     @Transactional
     public OrderResponse updateOrderStatus(Long id, OrderStatusUpdateRequest request) {
         Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Order not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + id));
 
         order.setStatus(request.getStatus());
 
@@ -126,9 +143,15 @@ public class OrderService {
     }
 
     private OrderItemResponse mapToOrderItemResponse(OrderItem item) {
+        Long productId = null;
+
+        if (item.getProduct() != null) {
+            productId = item.getProduct().getId();
+        }
+
         return new OrderItemResponse(
                 item.getId(),
-                item.getProduct().getId(),
+                productId,
                 item.getProductName(),
                 item.getQuantity(),
                 item.getUnitPrice(),
