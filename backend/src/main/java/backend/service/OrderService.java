@@ -32,7 +32,7 @@ public class OrderService {
 
     @Transactional(readOnly = true)
     public List<OrderResponse> getAllOrders() {
-        return orderRepository.findTop30ByOrderByCreatedAtDesc()
+        return orderRepository.findTop25ByOrderByCreatedAtDesc()
                 .stream()
                 .map(this::mapToOrderResponse)
                 .toList();

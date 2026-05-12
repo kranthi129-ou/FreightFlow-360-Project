@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @EntityGraph(attributePaths = {"items", "items.product"})
-    List<Order> findTop30ByOrderByCreatedAtDesc();
+    List<Order> findTop25ByOrderByCreatedAtDesc();
 
     @Override
     @EntityGraph(attributePaths = {"items", "items.product"})
