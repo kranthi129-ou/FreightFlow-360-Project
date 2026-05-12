@@ -32,7 +32,7 @@ export class AdminSetup implements OnInit {
         }
       },
       error: () => {
-        this.errorMessage = 'Unable to check admin setup status.';
+        this.errorMessage = 'Unable to create admin account.';
       }
     });
   }
