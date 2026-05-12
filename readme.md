@@ -4,5 +4,5 @@ FreightFlow 360 is a web-based project designed to simplify freight and logistic
 
 ## Live Demo
 
-[FreightFlow-360](https://freightflow360.pages.dev/): https://freightflow360.pages.dev/
+FreightFlow-360: https://freightflow360.pages.dev/
 
