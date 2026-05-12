@@ -6,7 +6,6 @@ import backend.dto.OrderStatusUpdateRequest;
 import backend.service.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +18,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
-@CrossOrigin(origins = "app.cors.allowed-origins=${CORS_ALLOWED_ORIGINS:http://localhost:4200}")
 public class OrderController {
 
     private final OrderService orderService;
