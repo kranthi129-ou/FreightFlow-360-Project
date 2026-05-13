@@ -4,18 +4,35 @@ FreightFlow-360: https://freightflow360.pages.dev/
 
 # FreightFlow 360
 
-FreightFlow 360 is a logistics-inspired full-stack web application built with Angular and Spring Boot. It combines a public-facing freight/logistics website style with a working admin portal for managing products, inventory, low-stock items, orders, and dashboard summaries.
+FreightFlow 360 is a logistics-inspired full-stack web application built with Angular and Spring Boot. It combines a public-facing freight company style website with a working admin portal for managing products, inventory, low-stock items, customer orders, and dashboard summaries.
 
-This project started as a rebuilt Warehouse Order and Inventory Management Portal after the original source files were lost. Once the rebuilt version became stable, it was copied into a new private repository named **FreightFlow 360** so the design, branding, and workflows could be customized safely without breaking the original backup project.
+The project started as a rebuilt Warehouse Order and Inventory Management Portal. After the rebuilt version became stable, it was copied into a new private repo named **FreightFlow 360** so the design and workflows could be customized safely without breaking the original backup project.
 
-The goal of FreightFlow 360 is to show a realistic full-stack application with frontend/backend integration, database persistence, API-driven pages, deployment setup, and a project story that reflects real development work.
+A big reason behind the new branding came from a college-organized day tour at **ArcBest**. During that tour, I saw how a real logistics company presents its services, operations, technology, and transportation workflows. That experience helped me see how my basic warehouse project could be turned into a more complete company-style logistics platform. FreightFlow 360 is an independent student/developer project and is not affiliated with ArcBest.
+
+---
+
+## Project Purpose
+
+The goal of FreightFlow 360 is to turn a simple warehouse management project into a polished full-stack logistics platform prototype.
+
+The project demonstrates:
+
+- Angular frontend development
+- Spring Boot backend development
+- REST API design
+- SQL database modeling
+- Full-stack integration
+- Inventory and order business logic
+- Deployment using Aiven, Render, and Cloudflare
+- A real project story that shows how the idea evolved
 
 ---
 
 ## Project Highlights
 
-- Logistics-style public website with navigation pages for shippers, carriers, technology, company info, careers, contact, and tracking
-- Admin dashboard backed by real API data
+- Logistics-style public website with pages for shippers, carriers, technology, company info, careers, contact, and shipment tracking
+- Working admin dashboard backed by real API data
 - Product management with add, edit, search, and safe delete behavior
 - Inventory tracking and low-stock workflow
 - Order creation with multiple products
@@ -24,7 +41,7 @@ The goal of FreightFlow 360 is to show a realistic full-stack application with f
 - Order status updates
 - REST API communication between Angular and Spring Boot
 - SQL database persistence
-- Deployment using Aiven, Render, and Cloudflare
+- Deployment setup using Aiven, Render, and Cloudflare
 
 ---
 
@@ -87,7 +104,7 @@ FreightFlow-360/
 
 ### Public Website
 
-FreightFlow 360 includes a public-facing logistics website experience. The public side is designed to look like a modern freight platform, with pages and navigation for:
+FreightFlow 360 includes a public-facing logistics website experience. This side of the app gives the project a company-style feel and includes pages such as:
 
 - Home
 - Shippers
@@ -100,7 +117,7 @@ FreightFlow 360 includes a public-facing logistics website experience. The publi
 - Track Shipment
 - Sign In/Register placeholders
 
-These pages create the logistics platform feel while the admin portal handles the working warehouse/order management features.
+The public pages were added to make the app feel closer to a real freight/logistics platform instead of only a basic admin CRUD project.
 
 ### Admin Dashboard
 
@@ -116,7 +133,7 @@ The dashboard displays real backend summary data:
 
 The admin can:
 
-- View all products from the database
+- View products from the database
 - Search products
 - Add new products
 - Edit product details
@@ -127,7 +144,7 @@ Products already used in orders are protected from deletion so old order history
 
 ### Inventory and Low Stock
 
-The low-stock workflow shows products where the quantity is less than or equal to the reorder level. The admin can refill or adjust stock. Once the product quantity becomes higher than the reorder level, it is removed from the Low Stock page.
+The low-stock workflow shows products where the quantity is less than or equal to the reorder level. The admin can refill or adjust stock. Once the product quantity becomes greater than the reorder level, it is removed from the Low Stock page.
 
 ### Order Management
 
@@ -171,7 +188,7 @@ Stores main order information such as customer name, status, total amount, and o
 
 ### order_items
 
-Stores the products inside each order. This keeps orders flexible because one order can contain multiple products.
+Stores the products inside each order. This allows one order to contain multiple products.
 
 ---
 
@@ -236,9 +253,9 @@ From the project root:
 cd backend
 ```
 
-Create or update your backend environment/application configuration with your local database connection.
+Create or update your backend application configuration with your database connection.
 
-Common Spring Boot database settings:
+Example local configuration:
 
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/freightflow360
@@ -254,13 +271,7 @@ Run the backend:
 mvn spring-boot:run
 ```
 
-If the project includes a Maven wrapper, you can also use:
-
-```bash
-./mvnw spring-boot:run
-```
-
-Backend default URL:
+The backend should start on:
 
 ```text
 http://localhost:8080
@@ -278,18 +289,18 @@ npm install
 ng serve
 ```
 
-Frontend default URL:
+The frontend should start on:
 
 ```text
 http://localhost:4200
 ```
 
-Make sure the Angular API base URL points to the backend URL.
+Make sure the Angular API base URL points to the Spring Boot backend.
 
 Example:
 
 ```ts
-apiUrl: 'http://localhost:8080/api'
+apiUrl = 'http://localhost:8080/api';
 ```
 
 ---
@@ -298,30 +309,25 @@ apiUrl: 'http://localhost:8080/api'
 
 FreightFlow 360 was deployed using:
 
-- **Aiven** for the managed SQL database
+- **Aiven** for managed SQL database hosting
 - **Render** for backend/frontend hosting
 - **Cloudflare** for DNS and domain management
 
-The deployment setup includes environment variables for database credentials, backend API URLs, frontend routing behavior, and allowed CORS origins.
+The deployed system follows this flow:
 
-More details are available in [`docs/04-deployment.md`](docs/04-deployment.md).
+```text
+User Browser
+   ↓
+Angular Frontend
+   ↓ REST API calls
+Spring Boot Backend
+   ↓ SQL queries
+Aiven Database
+```
 
----
+Cloudflare manages the custom domain and DNS routing.
 
-## Testing Summary
-
-End-to-end testing was completed across the main workflows:
-
-- Dashboard loads real summary data
-- Products can be added and edited
-- Low-stock products can be adjusted
-- Orders can be created
-- Inventory decreases after order creation
-- Order details load correctly
-- Order status can be updated
-- Dashboard values update after backend changes
-
-Full testing notes are available in [`docs/06-testing-summary.md`](docs/06-testing-summary.md).
+More deployment notes are available in [`docs/04-deployment.md`](docs/04-deployment.md).
 
 ---
 
@@ -329,36 +335,36 @@ Full testing notes are available in [`docs/06-testing-summary.md`](docs/06-testi
 
 | File | Purpose |
 |---|---|
-| [`docs/01-project-story.md`](docs/01-project-story.md) | Project background, rebuild story, and FreightFlow 360 evolution |
-| [`docs/02-architecture.md`](docs/02-architecture.md) | Frontend, backend, database, API, and deployment architecture |
-| [`docs/03-pages-and-user-flow.md`](docs/03-pages-and-user-flow.md) | Public website pages and admin portal workflows |
-| [`docs/04-deployment.md`](docs/04-deployment.md) | Aiven, Render, Cloudflare, environment variables, and deployment issues |
-| [`docs/05-api-endpoints.md`](docs/05-api-endpoints.md) | REST API documentation with examples |
-| [`docs/06-testing-summary.md`](docs/06-testing-summary.md) | Manual and end-to-end testing summary |
+| [`docs/01-project-story.md`](docs/01-project-story.md) | Explains the project background, rebuild story, ArcBest tour inspiration, and FreightFlow 360 branding |
+| [`docs/02-architecture.md`](docs/02-architecture.md) | Explains frontend, backend, database, API flow, and deployment architecture |
+| [`docs/03-pages-and-user-flow.md`](docs/03-pages-and-user-flow.md) | Documents all public website pages and admin portal workflows |
+| [`docs/04-deployment.md`](docs/04-deployment.md) | Explains Aiven, Render, Cloudflare, environment variables, and deployment issues |
+| [`docs/05-api-endpoints.md`](docs/05-api-endpoints.md) | Documents product, inventory, order, and dashboard APIs |
+| [`docs/06-testing-summary.md`](docs/06-testing-summary.md) | Summarizes end-to-end testing completed for the app |
 
 ---
 
 ## Future Improvements
 
-Planned improvements for future versions:
+Future versions could add:
 
-- User login and authentication
+- Login and authentication
 - Role-based access control
-- Separate admin/staff/customer roles
-- Shipment tracking connected to real backend data
+- Real shipment tracking data
+- Carrier assignment workflow
 - Supplier management
 - Inventory transaction history
-- Pagination and advanced filters
 - CSV export
-- Unit and integration tests
+- Pagination and filters
 - Docker setup
 - GitHub Actions CI/CD
-- More detailed deployment automation
+- Unit and integration tests
+- More complete public website content
+- Admin analytics charts
 
 ---
 
 ## Project Status
 
-FreightFlow 360 is a working full-stack project with connected frontend/backend workflows and deployed infrastructure. The current version focuses on the main warehouse and order management features while presenting them inside a customized logistics-style platform.
-
+FreightFlow 360 is a working full-stack project with connected frontend, backend, database, and deployment setup. The project is still open for improvements, but the main Version 1 workflows are complete.
 
