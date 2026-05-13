@@ -348,7 +348,6 @@ More deployment notes are available in [`docs/04-deployment.md`](docs/04-deploym
 
 Future versions could add:
 
-- Login and authentication
 - Role-based access control
 - Real shipment tracking data
 - Carrier assignment workflow
